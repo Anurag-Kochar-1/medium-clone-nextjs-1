@@ -5,6 +5,9 @@ import HomeTopBar from '../components/Mobile/TopBar/HomeTopBar'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 
+
+import { useSession , signIn } from "next-auth/react"
+
 // import "../styles/stylesScroll.css"
 
 export default function Home() {
@@ -35,6 +38,8 @@ export default function Home() {
     
   // },[])
   
+  const  {data: session} = useSession()
+  
 
 
   return (
@@ -45,13 +50,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='grid grid-cols-12'>
+      {
+        !session && (
+          <main>
+            <button onClick={()=> signIn()}> Sign in with google </button>
+          </main>
+        )
+      }
+
+
+      { session &&  <main className='grid grid-cols-12'>
         <HomeTopBar />
         <Navbar />
         <Feed />
         <Sidebar />
+      </main>}
 
-      </main>
     </div>
   )
 }

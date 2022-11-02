@@ -3,6 +3,8 @@ import GetUnlimitedAccessButton from './GetUnlimitedAccessButton/GetUnlimitedAcc
 import SearchBar from './SearchBar/SearchBar'
 
 const Sidebar = () => {
+  
+
   return (
     <div className='hidden 
     lg:white lg:py-3 lg:inline-block lg:col-span-3 lg:min-h-screen lg:border-l lg:border-l-gray-200 
