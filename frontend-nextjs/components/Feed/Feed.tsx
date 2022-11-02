@@ -6,7 +6,7 @@ const Feed = () => {
     <div className='col-span-12 p-10 h-screen mb-[10vh] overflow-y-scroll scrollbar-hide
     lg:col-span-8 lg:mb-0
     '>
-    <h1 className='text-center text-7xl'> Feed </h1>
+    <h1 className='text-center text-7xl text-gray-400 my-4'> Feed </h1>
     <p>
     The three laws of motion were first stated by Isaac Newton in his Philosophiæ Naturalis Principia Mathematica (Mathematical Principles of Natural Philosophy), originally published in 1687.[3] Newton used them to investigate and explain the motion of many physical objects and systems, which laid the foundation for classical mechanics. In the time since Newton, the conceptual content of classical physics has been reformulated in alternative ways, involving different mathematical approaches that have yielded insights which were obscured in the original, Newtonian formulation. Limitations to Newton's laws have also been discovered; new theories are necessary when objects move at very high
 
