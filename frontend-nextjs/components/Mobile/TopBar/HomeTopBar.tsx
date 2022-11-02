@@ -7,7 +7,7 @@ import Link from "next/link"
 const HomeTopBar = () => {
 
   return (
-    <div className='sticky top-0 left-0 z-20 
+    <div className='fixed top-0 left-0 z-20 
     w-screen flex justify-between items-center px-6 h-[8vh] bg-white
     lg:hidden
     '>

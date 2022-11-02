@@ -5,6 +5,8 @@ import HomeTopBar from '../components/Mobile/TopBar/HomeTopBar'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 
+import HomeLayout from "../layouts/HomeLayout"
+
 
 import { useSession , signIn } from "next-auth/react"
 
@@ -59,12 +61,16 @@ export default function Home() {
       }
 
 
-      { session &&  <main className='grid grid-cols-12'>
-        <HomeTopBar />
-        <Navbar />
-        <Feed />
-        <Sidebar />
-      </main>}
+      { session &&  (
+        <main className="grid grid-cols-12">
+          <HomeTopBar />
+          <Navbar />
+          <Feed />
+          <Sidebar />
+        </main>
+      )
+      
+      }
 
     </div>
   )

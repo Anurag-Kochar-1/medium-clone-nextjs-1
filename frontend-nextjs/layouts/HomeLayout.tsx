@@ -7,7 +7,7 @@ interface HomeLayoutProps {
 }
 
 
-export const Layout = ({children}:HomeLayoutProps) => {
+const HomeLayout = ({children}:HomeLayoutProps) => {
     return (
         <div className="grid grid-cols-12">
             <HomeTopBar />
@@ -17,3 +17,5 @@ export const Layout = ({children}:HomeLayoutProps) => {
         </div>
     )
 }
+
+export default HomeLayout

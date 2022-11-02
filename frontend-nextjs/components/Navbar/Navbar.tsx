@@ -14,11 +14,11 @@ const Navbar = () => {
   let userProfilePicture:any = session?.user?.image  
 
   return (
-    <nav className='fixed  z-40 bottom-0 w-full h-[10vh] bg-white flex justify-between items-center px-8 border-t border-t-gray-400
+    <nav className='fixed z-40 bottom-0 w-full h-[10vh] bg-white flex justify-between items-center px-8 border-t border-t-gray-400
       lg:relative lg:col-span-1 lg:h-screen lg:flex-col lg:justify-center lg:space-y-7 lg:items-center lg:border-t-0 lg:border-r lg:border-r-gray-200
     '>
 
-      <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' />
+      <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' /> 
 
       <AiOutlineHome className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
       <AiOutlineBell className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
