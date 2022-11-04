@@ -9,6 +9,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { BlogBody } from '../../types/typings';
+
+import { toast  } from "react-toastify";
+
+
+
 
 interface Props { 
   title: string
@@ -18,6 +24,7 @@ interface Props {
 }
 
 const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:Props ) => {
+  const showBlogPostedToast = () => toast('Blog Posted', { hideProgressBar: true, autoClose: 2000, type: 'success' ,position:'bottom-center'})
 
   const {data: session} = useSession()
   
@@ -31,6 +38,44 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
   const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
   };
+
+  const postBlog = async () => {
+    try {
+      console.log('postBlog is running');
+
+      const blogBody: BlogBody = {
+        username: session?.user?.name,
+        profileImg: session?.user?.image,
+        userEmail: session?.user?.email,
+        title,
+        coverImage: image,
+        body: blogContent,
+        previewSubtitle : previewSubtitle,
+        category: category,
+        likeCount: 0
+      }
+
+      const result = await fetch(`/api/addBlog`, {
+        body: JSON.stringify(blogBody),
+        method: "POST",
+
+    })
+    const json = await result.json()
+
+    showBlogPostedToast()
+      
+    } catch (error) {
+     console.log(error);
+      
+    }
+  }
+
+  const addBlogBtnFunc = async () => {
+    
+    postBlog()
+
+
+  }
 
   return (
     <main className='col-span-12 bg-white flex flex-col py-9 items-center justify-start px-3  mt-[8vh] h-[92vh] overflow-y-scroll overflow-x-hidden scrollbar-hide
@@ -122,9 +167,11 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   label="Category"
                   onChange={handleCategoryChange}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={'Tech'}> Tech </MenuItem>
+                  <MenuItem value={'Business'}> Business </MenuItem>
+                  <MenuItem value={'Travel'}> Travel </MenuItem>
+                  <MenuItem value={'Movies'}> Movies </MenuItem>
+                  <MenuItem value={'Web3'}> Web 3 </MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -133,6 +180,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
             <div className='bg-white w-full flex justify-center items-center space-x-3 px-3 py-8'>
               <button
               className="bg-green-600 text-white px-6 py-1 rounded-full cursor-pointer disabled:bg-green-300 disabled:hover:cursor-not-allowed "
+              onClick={ addBlogBtnFunc }
               > Publish </button>
 
               <Link href={'/'}>

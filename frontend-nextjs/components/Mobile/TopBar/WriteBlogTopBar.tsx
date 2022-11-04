@@ -9,6 +9,13 @@ interface Props {
   
 }
 
+// title,
+// blogContent,
+// coverImage
+// previewSubtitle
+// category
+// likeCount
+// createdAt
 
 const WriteBlogTopBar = ( { isPageNumber2 , setIsPageNumber2}:Props ) => {
 
