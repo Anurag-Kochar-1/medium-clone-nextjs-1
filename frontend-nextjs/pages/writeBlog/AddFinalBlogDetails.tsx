@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import blogCoverImageThumbnail from "../../public/images/blogCoverImageThumbnail.png"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 import { useSession } from "next-auth/react"
 
@@ -25,6 +26,8 @@ interface Props {
 
 const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:Props ) => {
   const showBlogPostedToast = () => toast('Blog Posted', { hideProgressBar: true, autoClose: 2000, type: 'success' ,position:'bottom-center'})
+
+  const router = useRouter()
 
   const {data: session} = useSession()
   
@@ -73,7 +76,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
   const addBlogBtnFunc = async () => {
     
     postBlog()
-
+    
 
   }
 
@@ -180,7 +183,10 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
             <div className='bg-white w-full flex justify-center items-center space-x-3 px-3 py-8'>
               <button
               className="bg-green-600 text-white px-6 py-1 rounded-full cursor-pointer disabled:bg-green-300 disabled:hover:cursor-not-allowed "
-              onClick={ addBlogBtnFunc }
+              onClick={() =>  {
+                addBlogBtnFunc()
+                router.push('/')
+              }}
               > Publish </button>
 
               <Link href={'/'}>

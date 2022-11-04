@@ -17,7 +17,7 @@ const Feed = ( {blogs}:Props ) => {
 
   return (
 
-    <div className='col-span-12 px-2 h-screen mt-[8vh] mb-[10vh] overflow-y-scroll scrollbar-hide bg-gray-300
+    <div className='col-span-12 px-2 max-h-screen mt-[8vh] overflow-y-scroll 
     lg:col-span-8 lg:mt-0 
     '>
     {/* <button onClick={() => console.log(blogs)}> LOG blogsState  </button> */}
