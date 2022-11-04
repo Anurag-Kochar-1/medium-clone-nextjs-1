@@ -5,15 +5,6 @@ type Data = {
   message: string
 }
 
-// username: string
-//     profileImg: string
-//     userEmail: string
-//     title: string
-//     coverImage: string
-//     body: string
-//     previewSubtitle : string
-//     category: string
-//     likeCount: number
 
 export default async function handler(
   req: NextApiRequest,

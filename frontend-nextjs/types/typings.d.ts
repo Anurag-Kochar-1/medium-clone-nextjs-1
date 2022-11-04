@@ -1,5 +1,5 @@
 export interface Blog extends BlogBody {
-    _id: string
+    _id:  string
     _createdAt: string
     _updatedAt: string
     _rev: string

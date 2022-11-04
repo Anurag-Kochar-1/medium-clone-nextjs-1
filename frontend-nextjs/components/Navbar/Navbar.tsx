@@ -18,9 +18,14 @@ const Navbar = () => {
       lg:relative lg:col-span-1 lg:h-screen lg:flex-col lg:justify-center lg:space-y-7 lg:items-center lg:border-t-0 lg:border-r lg:border-r-gray-200
     '>
 
-      <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' /> 
+      <Link href={'/'}>
 
-      <AiOutlineHome className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
+        <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' /> 
+      </Link>
+
+      <Link href={'/'}>
+        <AiOutlineHome className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
+      </Link> 
       <AiOutlineBell className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
       <AiOutlineSearch className=' w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer ' />
       <BsBookmarks className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />

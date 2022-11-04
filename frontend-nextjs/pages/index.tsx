@@ -73,7 +73,7 @@ export default function Home( {blogs}:Props  ) {
           <HomeTopBar />
           <Navbar />
           <Feed blogs={blogs}  />
-          <Sidebar />
+          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} />
         </main>
       )
       
