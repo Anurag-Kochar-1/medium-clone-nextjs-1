@@ -25,7 +25,9 @@ export default async function handler(
                     body: data.body,
                     previewSubtitle : data.previewSubtitle,
                     category: data.category,
-                    likeCount: data.likeCount
+                    likeCount: data.likeCount,
+                    blockTheBlog: data.blockTheBlog,
+                    staffPicks: data.staffPicks
                 }
             }
         ]

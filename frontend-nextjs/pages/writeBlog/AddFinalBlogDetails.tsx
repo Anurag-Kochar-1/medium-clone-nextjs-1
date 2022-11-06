@@ -55,7 +55,9 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
         body: blogContent,
         previewSubtitle : previewSubtitle,
         category: category,
-        likeCount: 0
+        likeCount: 0,
+        blockTheBlog: false,
+        staffPicks: false,
       }
 
       const result = await fetch(`/api/addBlog`, {
@@ -175,6 +177,9 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   <MenuItem value={'Travel'}> Travel </MenuItem>
                   <MenuItem value={'Movies'}> Movies </MenuItem>
                   <MenuItem value={'Web3'}> Web 3 </MenuItem>
+                  <MenuItem value={'Design'}> Design </MenuItem>
+                  <MenuItem value={'Books'}> Books </MenuItem>
+                  <MenuItem value={'Investing'}> Investing </MenuItem>
                 </Select>
               </FormControl>
             </Box>

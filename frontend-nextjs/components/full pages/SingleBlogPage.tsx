@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Blog } from '../../types/typings'
 import {BsBookmarkPlus} from "react-icons/bs"
 import Head from 'next/head'
+import OptionsBottomBar from '../BlogPageOptionsBottomBar/OptionsBottomBar'
 
 import Dropdown from "../Dropdown/Dropdown"
+import BookmarkBtn from '../Bookmark/BookmarkBtn'
+import Sidebar from '../Sidebar/Sidebar'
+import { profileContext } from '../../context/Context'
 
 
 interface Props {
@@ -11,10 +15,18 @@ interface Props {
 }
 
 const SingleBlogPage = ({blog}:Props) => {
+    const { setBlogDetails }:any = useContext(profileContext) 
+    
+    
+    useEffect(()=> {
+        setBlogDetails(blog)
+    },[])
+    
   return (
     
     <div className='w-full bg-white flex flex-col just items-center px-2 md:w-[80%] lg:w-[70%] scrollbar-hide'>
 
+    
         <Head>
             <title> {blog.title} </title>
         </Head>
@@ -28,10 +40,8 @@ const SingleBlogPage = ({blog}:Props) => {
             </div>
 
             <div className='w-full 0  flex justify-start items-center py-2 md:justify-end '>
-                <div className='flex justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-400'>
-                    <BsBookmarkPlus className='w-4 h-4 text-gray-400' />
-                    <p className='text-gray-400'> Save </p>
-                </div>
+
+                <BookmarkBtn blogId={blog._id} blog={blog} />
 
                 <Dropdown blogId={blog._id} creatorEmail={blog.userEmail as string} />
 
@@ -46,10 +56,13 @@ const SingleBlogPage = ({blog}:Props) => {
         </div>
         <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md' />
 
+        <OptionsBottomBar likeCount={blog.likeCount} blogId={blog._id} />
         <p className='my-9 text-gray-800 text-base md:text-lg md:font-normal'> {blog.body} </p>
+
                 
         
     </div>
+
   )
 }
 

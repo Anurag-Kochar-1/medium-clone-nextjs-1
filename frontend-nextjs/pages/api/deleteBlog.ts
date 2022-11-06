@@ -37,7 +37,7 @@ export default async function handler(
     const { blogId } = req.query
     const  DATA  = await sanityClient.delete(blogId as string)
     .then(() => {
-      console.log('Bike deleted')
+      console.log('Blog deleted')
     })
     .catch((err) => {
       console.error('Delete failed: ', err.message)

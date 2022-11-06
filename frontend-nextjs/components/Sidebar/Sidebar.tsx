@@ -3,21 +3,24 @@ import GetUnlimitedAccessButton from './GetUnlimitedAccessButton/GetUnlimitedAcc
 import SearchBar from './SearchBar/SearchBar'
 import SingleBlogPageSideBar from './SingleBlogPageSideBar/SingleBlogPageSideBar'
 import HomePageSidebar from './HomePageSidebar/HomePageSidebar'
+import { Blog } from '../../types/typings'
 
 
 interface Props {
   homePageSidebar?:string
   singleBlogPageSidebar?: string
+  blogs?: Blog[] 
+  blog?: Blog 
 }
 
-const Sidebar = ( {homePageSidebar , singleBlogPageSidebar}:Props ) => {
+const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , blogs}:Props ) => {
   
   
 
   return (
-    <div className='hidden 
+    <div className='hidden bg-white
     lg:white lg:py-3 lg:inline-flex lg:col-span-3 lg:min-h-screen lg:border-l lg:border-l-gray-200 
-    lg:flex-col lg:items-center lg:justify-start bg-red-100
+    lg:flex-col lg:items-center lg:justify-start 
     '>
 
     <GetUnlimitedAccessButton />
@@ -26,11 +29,11 @@ const Sidebar = ( {homePageSidebar , singleBlogPageSidebar}:Props ) => {
 
     {homePageSidebar === 'yes' ? (
       <>
-        <HomePageSidebar />
+        <HomePageSidebar blogs={blogs} />
       </>
     ) : (
       <> 
-        <SingleBlogPageSideBar />
+        <SingleBlogPageSideBar  />
       </>
     )}
 

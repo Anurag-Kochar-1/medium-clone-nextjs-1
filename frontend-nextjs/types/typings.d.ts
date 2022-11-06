@@ -17,6 +17,8 @@ export type BlogBody = {
     previewSubtitle : string
     category: string
     likeCount: number
+    blockTheBlog: boolean
+    staffPicks: boolean
 }
 
 export interface BlogArray {

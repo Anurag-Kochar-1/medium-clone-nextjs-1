@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const BlogPagelayout = ( {children}:LayoutProps ) => {
   return (
-    <div className='grid grid-cols-12 '>
+    <div className='grid grid-cols-12'>
             <HomeTopBar />
             <Navbar />
             {children} 

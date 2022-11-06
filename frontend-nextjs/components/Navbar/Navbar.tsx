@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Link from "next/link"
 
 import {AiOutlineHome , AiOutlineBell, AiOutlineSearch, AiOutlineUser } from "react-icons/ai"
@@ -7,8 +7,11 @@ import {HiOutlinePencilSquare} from "react-icons/hi2"
 import {MdOutlineError} from "react-icons/md"
 
 import { useSession , signOut} from "next-auth/react"
+import { profileContext } from '../../context/Context'
 
 const Navbar = () => {
+
+  const { blogDetails }:any = useContext(profileContext)
 
   const  {data: session} = useSession()
   let userProfilePicture:any = session?.user?.image  

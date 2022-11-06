@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { profileContext } from "../../../context/Context"
 import Link from 'next/link'
 import {BsBookmarkPlus , BsDashCircle , BsThreeDots} from "react-icons/bs"
 import { Blog } from '../../../types/typings'
 import Dropdown from '../../Dropdown/Dropdown'
 import { useSession } from "next-auth/react"
+import BookmarkBtn from '../../Bookmark/BookmarkBtn'
 
 interface Props {
     blog:Blog
@@ -11,6 +13,7 @@ interface Props {
 
 
 const BlogCard = ( {blog}:Props ) => {
+    const {blogDetails , setBlogDetails}:any = useContext(profileContext)
     const day = blog._createdAt
 
     const {data: session} = useSession()
@@ -21,11 +24,9 @@ const BlogCard = ( {blog}:Props ) => {
         <div className='w-full  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
         border-b-2 border-b-gray-200 
         lg:w-[80%]
-        '>
-        
-        
-
-        
+        '
+        onClick={() => setBlogDetails(blog)}
+        >
             <div className='w-[60%]   h-auto flex flex-col items-start justify-start'>
                     <div className=' w-full flex justify-start items-center space-x-3 py-2     '>
                         <img  src={blog.profileImg as string } alt="dp" 
@@ -46,7 +47,8 @@ const BlogCard = ( {blog}:Props ) => {
                         <p className='px-3 py-1  text-sm rounded-full bg-gray-200'> {blog.category} </p>
                         {/* <p className='text-sm bg-red-900'> 7 min read </p> */}
                         <div className=' flex items-center space-x-3'>
-                            <BsBookmarkPlus className='w-4 h-4 text-gray-700 hover:cursor-pointer  md:w-5 md:h-5'/>
+                            {/* <BsBookmarkPlus className='w-4 h-4 text-gray-700 hover:cursor-pointer  md:w-5 md:h-5'/> */}
+                            <BookmarkBtn blogId={blog._id} blog={blog} />
                             <BsDashCircle className='w-4 h-4 text-gray-700 hover:cursor-pointer  md:w-5 md:h-5'/>
                             {/* <BsThreeDots className='w-4 h-4 text-gray-700 hover:cursor-pointer'/> */}
                             {session?.user?.email === blog.userEmail &&  <Dropdown blogId={blog._id} creatorEmail={blog.userEmail as string} />}

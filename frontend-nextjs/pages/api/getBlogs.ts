@@ -4,7 +4,7 @@ import { Blog } from "../../types/typings"
 import { groq } from "next-sanity"
 
 const blogQuery = groq`
-*[_type == "blog"] {
+*[_type == "blog" && blockTheBlog == false] {
     _id,
     ...
 } | order(_createdAt desc)

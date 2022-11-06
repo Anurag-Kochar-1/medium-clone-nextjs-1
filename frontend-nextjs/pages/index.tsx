@@ -19,6 +19,7 @@ interface Props {
 
 
 export default function Home( {blogs}:Props  ) {
+  console.log(blogs)
   
 
   // const mainRef = useRef(null)
@@ -73,7 +74,7 @@ export default function Home( {blogs}:Props  ) {
           <HomeTopBar />
           <Navbar />
           <Feed blogs={blogs}  />
-          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} />
+          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} blogs={blogs} />
         </main>
       )
       
