@@ -9,7 +9,7 @@ interface Props {
 const BlogsContainer = ( {blogsData }:Props ) => {
 
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-start py-2 '>
+    <div className='w-full  h-auto flex flex-col items-center justify-start py-20 '>
         {/* <button onClick={() => console.log(blogsData)}> log blogsData from blogContainer  </button> */}
         
          

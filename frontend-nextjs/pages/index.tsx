@@ -10,6 +10,7 @@ import { fetchBlogs } from '../apis/fetchBlogs'
 
 import { useSession , signIn } from "next-auth/react"
 import { Blog } from '../types/typings'
+import RecommendedCategoriesHeader from '../components/RecommendedCategoriesHeader/RecommendedCategoriesHeader'
 
 // import "../styles/stylesScroll.css"
 
@@ -72,6 +73,7 @@ export default function Home( {blogs}:Props  ) {
       { session &&  (
         <main className="grid grid-cols-12">
           <HomeTopBar />
+          {/* <RecommendedCategoriesHeader /> */}
           <Navbar />
           <Feed blogs={blogs}  />
           <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} blogs={blogs} />

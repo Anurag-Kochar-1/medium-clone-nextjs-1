@@ -18,7 +18,7 @@ const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , blogs}:Props ) => {
   
 
   return (
-    <div className='hidden bg-white
+    <div className='hidden bg-white z-40
     lg:white lg:py-3 lg:inline-flex lg:col-span-3 lg:min-h-screen lg:border-l lg:border-l-gray-200 
     lg:flex-col lg:items-center lg:justify-start 
     '>
