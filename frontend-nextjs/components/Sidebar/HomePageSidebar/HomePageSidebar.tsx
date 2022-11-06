@@ -2,6 +2,7 @@ import React from 'react'
 import {GoPrimitiveDot} from "react-icons/go"
 import { Blog } from '../../../types/typings'
 import ReadingListTip from '../Tips/ReadingListTip'
+import RecommendedTopics from './RecommendedTopics/RecommendedTopics'
 import StaffPicks from './Staff Picks/StaffPicks'
 
 import StaffPicksBlogCard from './StaffPicksBlogCard'
@@ -17,6 +18,7 @@ const HomePageSidebar = ({blogs}:Props) => {
 
        <StaffPicks blogs={blogs} />
        {/* <h3 className='text-xl my-5'> Recommend Lists </h3> */}
+       <RecommendedTopics />
        <ReadingListTip />
     </div>
   )

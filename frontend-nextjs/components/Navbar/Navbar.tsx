@@ -6,8 +6,10 @@ import {BsJournalText , BsBookmarks , BsMedium} from "react-icons/bs"
 import {HiOutlinePencilSquare} from "react-icons/hi2"
 import {MdOutlineError} from "react-icons/md"
 
-import { useSession , signOut} from "next-auth/react"
+import { useSession , signOut , signIn} from "next-auth/react"
 import { profileContext } from '../../context/Context'
+import UserProfilePopover from '../Popovers/UserProfilePopover'
+import UserProfileDropDown from '../Popovers/UserProfilePopover'
 
 const Navbar = () => {
 
@@ -22,9 +24,10 @@ const Navbar = () => {
     '>
 
       <Link href={'/'}>
-
         <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' /> 
       </Link>
+
+      {/* <UserProfilePopover /> */}
 
       <Link href={'/'}>
         <AiOutlineHome className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
@@ -42,12 +45,21 @@ const Navbar = () => {
          <HiOutlinePencilSquare className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
         </Link>
 
+        
 
-        {!session &&  <MdOutlineError className='hidden lg:inline fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '/>}
+        {!session &&  <MdOutlineError onClick={()=> signIn()} className='hidden lg:inline fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '/>}
+
 
         {session &&  <img src={ userProfilePicture } alt="dp" className='hidden lg:inline rounded-full  fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '
           onClick={() => signOut()}
-        />}
+        /> }
+
+
+        {/* <img src={ userProfilePicture } alt="dp" className='hidden lg:inline rounded-full  fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '
+          onClick={() => signOut()}
+        /> */}
+
+        {/* <UserProfileDropDown userProfilePicture={userProfilePicture} signOut={signOut}  /> */}
 
     </nav>
   )

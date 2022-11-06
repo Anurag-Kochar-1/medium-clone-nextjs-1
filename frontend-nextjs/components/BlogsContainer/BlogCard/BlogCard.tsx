@@ -18,9 +18,9 @@ const BlogCard = ( {blog}:Props ) => {
 
     const {data: session} = useSession()
 
-    
-  return (
-    
+
+    if(!blog) return <h1 className='text-7xl font-bold'> FETCHING........ </h1>
+  return (    
         <div className='w-full  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
         border-b-2 border-b-gray-200 
         lg:w-[80%]

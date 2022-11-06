@@ -9,7 +9,7 @@ interface Props {
 
 const StaffPicks = ({blogs}:Props) => {
   return (
-    <div className='w-full flex justify-start items-center space-x-1'>
+    <div className='w-full flex justify-start items-center space-x-1 pt-3 pb-2'>
 
     <div className=' w-full my-1'>
       <div className='flex w-full px-1 space-x-1 justify-start items-center'>

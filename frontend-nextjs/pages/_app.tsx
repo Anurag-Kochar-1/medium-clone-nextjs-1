@@ -18,10 +18,11 @@ interface blogDetailsType {
 
 export default function App({ Component, pageProps: {session, ...pageProps} }: any) {
   const [blogDetails, setBlogDetails] = useState<blogDetailsType[]>([])
+  const [blogs, setBlogs] = useState <Blog[]> ([])
 
   return (
     
-      <profileContext.Provider value={{blogDetails, setBlogDetails}}>
+      <profileContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs}}>
         <SessionProvider session={session}>
           <Component {...pageProps} />
           <ToastContainer />
