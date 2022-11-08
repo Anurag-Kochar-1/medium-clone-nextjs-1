@@ -1,6 +1,6 @@
 // import {useRef, useEffect} from "react"
 import React, {useState , useEffect, useContext} from 'react'
-import { profileContext } from "../context/Context"
+import { BlogsContext } from "../context/Context"
 import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Feed from '../components/Feed/Feed'
@@ -26,13 +26,14 @@ interface Props {
 export default function Home( {Allblogs}:Props  ) {
 
   // const [blogs, setBlogs] = useState <Blog[]> (Allblogs)
-  const {setBlogs , blogs}:any = useContext(profileContext) 
+  const {setBlogs , blogs , allBlogsStateForSidebar , setAllBlogsStateForSidebar}:any = useContext(BlogsContext) 
     
   const  {data: session} = useSession()
 
 
   useEffect(() => {
     setBlogs(Allblogs)
+    setAllBlogsStateForSidebar(Allblogs)
   },[])
 
   
@@ -66,14 +67,6 @@ export default function Home( {Allblogs}:Props  ) {
     
   // },[])
 
-  // , {
-  //   method: 'GET',
-  //   headers: {
-  //         'Content-Type': 'application/json',
-  //                 Authorization : `Bearer ${process.env.SANITY_API_TOKEN}`
-  //     }
-  // }
-
 
   // ----------------- RecommendedCatogries ----------------------
 
@@ -103,30 +96,18 @@ export default function Home( {Allblogs}:Props  ) {
 }
 
   
+const [hydrated, setHydrated] = useState<boolean>(false);
 
-
-// useEffect(() => {
-//   if (!router.isReady) return; 
-
-//   if(router.isReady) {
-//     setSearchQuery(tag as string)
-//   }
-// })
-
-
-
-
-  // const blogsByTagFilter = () => {
-  //   console.log('blogsByTagFilter is running ' + searchQuery);
-    
-  //   Allblogs.filter((blog:Blog) => {
-  //     return blog.category == searchQuery
-  //   })
-
-  //   console.log(Allblogs);
-    
-  // }
+useEffect(() => {
+  setHydrated(true)
+  console.log(`setHydrated is set to true from index.tsx`);
   
+},[])
+
+
+
+
+if(!hydrated) return null
 
 
   return (
@@ -147,16 +128,12 @@ export default function Home( {Allblogs}:Props  ) {
 
 
       { true &&  (
-        <main className="grid grid-cols-12">
-
-        {/* <h1 className='text-3xl' onClick={() => console.log(searchQuery)}> log searchQuery and searchQuery is :{searchQuery}    </h1> */}
-          
-          {/* <button onClick={() => console.log(searchQuery)}> LOG searchQuery </button> */}
+        <main className="grid grid-cols-12">          
           <HomeTopBar />
-          <RecommendedCategoriesHeader searchQuery={searchQuery} fetchBlogsByTagFunction={fetchBlogsByTagFunction}  setSearchQuery={setSearchQuery} />
+          {/* <RecommendedCategoriesHeader  /> */}
           <Navbar />
           <Feed blogs={blogs}  />
-          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} blogs={blogs} />
+          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} blogs={allBlogsStateForSidebar} />
         </main>
       )
       

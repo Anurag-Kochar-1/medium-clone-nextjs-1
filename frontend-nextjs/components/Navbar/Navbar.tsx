@@ -7,13 +7,13 @@ import {HiOutlinePencilSquare} from "react-icons/hi2"
 import {MdOutlineError} from "react-icons/md"
 
 import { useSession , signOut , signIn} from "next-auth/react"
-import { profileContext } from '../../context/Context'
+import { BlogsContext } from '../../context/Context'
 import UserProfilePopover from '../Popovers/UserProfilePopover'
 import UserProfileDropDown from '../Popovers/UserProfilePopover'
 
 const Navbar = () => {
 
-  const { blogDetails }:any = useContext(profileContext)
+  const { blogDetails }:any = useContext(BlogsContext)
 
   const  {data: session} = useSession()
   let userProfilePicture:any = session?.user?.image  

@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { profileContext } from "../context/Context"
+import { BlogsContext } from "../context/Context"
 import { Blog } from '../types/typings'
 
 interface blogDetailsType {
@@ -20,13 +20,16 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: a
   const [blogDetails, setBlogDetails] = useState<blogDetailsType[]>([])
   const [blogs, setBlogs] = useState <Blog[]> ([])
 
+  // Used for sidebar, so that query paramter doesn't affect stack picks
+  const [allBlogsStateForSidebar , setAllBlogsStateForSidebar] = useState<Blog[]>([])
+
   return (
     
-      <profileContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs}}>
+      <BlogsContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar }}>
         <SessionProvider session={session}>
           <Component {...pageProps} />
           <ToastContainer />
         </SessionProvider>
-    </profileContext.Provider>
+    </BlogsContext.Provider>
   )
 }

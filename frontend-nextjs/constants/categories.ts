@@ -1,6 +1,6 @@
-export const Categories = [
+export const Categories:string[] = [
     "Tech",
-    "Design",
+    "Science",
     "Business",
     "Web3",
     "Investing",
@@ -9,4 +9,10 @@ export const Categories = [
     "Economy",
     "Food",
     "GeoPolitics",
+    "Cultural",
+    "Design",
+    "Fashion",
+    "Career",
+    "Fitness",
+    "Politics",
 ]

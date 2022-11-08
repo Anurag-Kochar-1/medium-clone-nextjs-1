@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +19,7 @@
     "next-auth": "^4.15.0",
     "next-sanity": "^1.0.6",
     "react": "18.2.0",
+    "react-alice-carousel": "^2.6.4",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-quill": "^2.0.0",
@@ -28,7 +29,7 @@
   "devDependencies": {
     "@types/node": "18.11.8",
     "@types/react": "^18.0.25",
-    "@types/react-dom": "18.0.8",
+    "@types/react-dom": "^18.0.8",
     "autoprefixer": "^10.4.13",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",

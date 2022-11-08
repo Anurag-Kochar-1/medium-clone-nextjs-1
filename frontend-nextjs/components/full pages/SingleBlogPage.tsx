@@ -7,7 +7,7 @@ import OptionsBottomBar from '../BlogPageOptionsBottomBar/OptionsBottomBar'
 import Dropdown from "../Dropdown/Dropdown"
 import BookmarkBtn from '../Bookmark/BookmarkBtn'
 import Sidebar from '../Sidebar/Sidebar'
-import { profileContext } from '../../context/Context'
+import { BlogsContext } from '../../context/Context'
 
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const SingleBlogPage = ({blog}:Props) => {
-    const { setBlogDetails }:any = useContext(profileContext) 
+    const { setBlogDetails }:any = useContext(BlogsContext) 
     
     
     useEffect(()=> {

@@ -1,3 +1,3 @@
 import React, {createContext} from 'react'
 
-export const profileContext = createContext({})
+export const BlogsContext = createContext({})

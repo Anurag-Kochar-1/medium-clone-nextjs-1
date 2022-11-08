@@ -1,68 +1,101 @@
-import React, {useEffect , useContext} from 'react'
+import React, {useEffect , useContext, useState, useRef} from 'react'
 import { fetchBlogsByTag } from '../../apis/fetchBlogsByTag'
 import Link from 'next/link'
 import { Categories  } from "../../constants/categories"
 import { useRouter } from 'next/router'
-import { profileContext } from '../../context/Context'
+import { BlogsContext } from '../../context/Context'
+
+// import TagCard from './TagCard'
+import {GrFormNext , GrFormPrevious} from "react-icons/gr"
+
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import TagCard from './tagCard'
+
 
 interface Props {
     fetchBlogsByTagFunction:(tagName: string) => Promise<any>
-    searchQuery: string
-    setSearchQuery: React.Dispatch<React.SetStateAction<string>>
 }
 
-const RecommendedCategoriesHeader = ({fetchBlogsByTagFunction , searchQuery , setSearchQuery}:Props) => {
-    const {setBlogs , blogs}:any = useContext(profileContext) 
+const RecommendedCategoriesHeader = (  ) => {
+    const {setBlogs , blogs}:any = useContext(BlogsContext) 
 
-        // const router = useRouter()
-        // const {tag} = router.query
+
+    const router = useRouter()
+    const { tag } = router.query
+    const [searchQuery, setSearchQuery] = useState("");
+  
+  
+  
+  
+    const fetchBlogsByTagFunction = async ( searchQuery:string ) => {
+      console.log(` fetchBlogsByTagFunction is running :  ${searchQuery} `);
     
-    // const fetchBlogsByTagFunction = async () => {
-        
-        
-    //     const BlogsByTag:any = await fetchBlogsByTag( tag  as string   )
-    //     console.log(`tagname is :${tag}`);
-        
-    //     console.log(BlogsByTag);
-        
-    //     setTimeout(() => {
-    //         setBlogs(BlogsByTag)
-    //     }, 2000);
-    //     return BlogsByTag
-    
-    
-    // }
-    
+      // const BlogsByTag:any = await fetchBlogsByTag( searchQuery as string  )        
       
-    
-    //   useEffect(() => {
-    //     if(router.isReady) {
-            
-            
-    //     }        
-    
-    // },[router.isReady])
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}api/getBlogsByTag?tag=${searchQuery}`)
+  
+      const  { blogsByTag } : any = await res.json()
+  
+      console.log(blogsByTag);
+      
+      setBlogs(blogsByTag)
+  
+      return blogsByTag
+      
+  }
+
+
+
+
+    const tagsContainerId:any = document.querySelector("#tagsContainer")
+
+
+    const prevBtnFunc = () => {
+        let width = tagsContainerId.clientWidth
+        tagsContainerId.scrollLeft = tagsContainerId.scrollLeft - width
+        
+    }
+
+    const nextBtnFunc = () => {
+        let width = tagsContainerId.clientWidth
+        tagsContainerId.scrollLeft = tagsContainerId.scrollLeft + width
+        
+        
+    }
+
+
 
 
   return (
-    <div className='fixed w-[100%] h-[8vh] top-[10vh] px-5 py-1 flex justify-start items-center space-x-3 bg-red-300 border-b-2 border-b-gray-400 overflow-x-scroll overflow-y-hidden lg:top-0 lg:justify-start lg:pr-20  scrollbar-hide '>
-        {
-            Categories.map((category) => {
-                return (
-                    <Link href={`/?tag=${category}`} >
-                        <p  onClick={ () => {
-                            setSearchQuery(category)
-                            console.log(`category is set to : ${category}`);
-                            
-                            setTimeout(() => {
-                                fetchBlogsByTagFunction(category)
-                            }, 100);
-                        }} className="px-5 py-1 bg-black text-gray-400 rounded-full hover:cursor-pointer"> {category} </p>
-                    </Link>
-                )
-            })
-        }
+    <div className='fixed w-[100%] lg:w-[60%] h-[8vh] top-[10vh] lg:top-[0vh] px-4  flex justify-start items-center bg-white border-b-2 border-b-gray-300 overflow-x-hidden overflow-y-hidden scrollbar-hide scroll-smooth '>
+  
+        
+        
+        <div className='relative overflow-hidden h-[8vh] bg-white'>
 
+
+            <button className='border-none px-1  outline-none h-[8vh] hover:cursor-pointer absolute top-0'>
+                <GrFormPrevious onClick={prevBtnFunc} className='w-5 h-5 text-gray-600  hover:text-black'/>
+            </button>
+
+            <button className='border-none px-1  outline-none h-[8vh] hover:cursor-pointer absolute top-0 right-0'>
+                <GrFormNext onClick={nextBtnFunc} className='w-5 h-5 text-gray-600 hover:text-black'/>
+            </button>
+
+            <div id='tagsContainer' className='overflow-y-hidden overflow-x-scroll scrollbar-hide mx-10 h-[8vh] flex scroll-smooth bg-white'>
+
+            <div onClick={() => alert(1)} className='px-3 mx-1 flex justify-center items-center text-center text-gray-600 hover:text-black hover:cursor-pointer bg-white rounded-lg'>
+                <p className='text-sm font-medium'> All </p>
+
+            </div>
+                {Categories.map((category) => {
+                    return <TagCard fetchBlogsByTagFunction={fetchBlogsByTagFunction} category={category} />
+                })}
+            </div>
+
+
+        </div>
         
     </div>
   )
@@ -72,3 +105,17 @@ export default RecommendedCategoriesHeader
 
 
 
+      {/* {
+            Categories.map((category) => {
+                return (
+                    <Link href={`/?tag=${category}`} >
+                        <p  onClick={ () => {
+    
+                            fetchBlogsByTagFunction(category)
+                        }} className="px-5 py-1 bg-black text-gray-400 rounded-full hover:cursor-pointer"> {category} </p>
+                    </Link>
+                )
+            })
+
+           
+        } */}

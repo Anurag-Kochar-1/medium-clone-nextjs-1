@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react'
-import { profileContext } from "../../../context/Context"
+import { BlogsContext } from "../../../context/Context"
 import { Blog } from '../../../types/typings'
 import { RiMailAddLine } from 'react-icons/ri'
 
 const SideBarProfile = () => {
-    const { blogDetails }:any  = useContext(profileContext)
+    const { blogDetails }:any  = useContext(BlogsContext)
     const [isFollowed , setIsFollowed] = useState<boolean>(false)
     
 

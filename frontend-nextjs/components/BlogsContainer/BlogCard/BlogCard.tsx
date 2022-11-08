@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { profileContext } from "../../../context/Context"
+import { BlogsContext } from "../../../context/Context"
 import Link from 'next/link'
 import {BsBookmarkPlus , BsDashCircle , BsThreeDots} from "react-icons/bs"
 import { Blog } from '../../../types/typings'
@@ -13,7 +13,7 @@ interface Props {
 
 
 const BlogCard = ( {blog}:Props ) => {
-    const {blogDetails , setBlogDetails}:any = useContext(profileContext)
+    const {blogDetails , setBlogDetails}:any = useContext(BlogsContext)
     const day = blog._createdAt
 
     const {data: session} = useSession()
@@ -21,7 +21,7 @@ const BlogCard = ( {blog}:Props ) => {
 
     if(!blog) return <h1 className='text-7xl font-bold'> FETCHING........ </h1>
   return (    
-        <div className='w-full  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
+        <div className='rounded-lg w-full  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
         border-b-2 border-b-gray-200 
         lg:w-[80%]
         '
