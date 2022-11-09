@@ -1,7 +1,7 @@
 export const Topics = [
     'Tech',
     'Design',
-    "Web 3",
+    "Web3",
     "Travel",
     "Politics",
     "Food",

@@ -57,7 +57,10 @@ const SingleBlogPage = ({blog}:Props) => {
         <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md' />
 
         <OptionsBottomBar likeCount={blog.likeCount} blogId={blog._id} />
+
         <p className='my-9 text-gray-800 text-base md:text-lg md:font-normal'> {blog.body} </p>
+
+        {/* {blog.body} */}
 
                 
         

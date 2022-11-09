@@ -24,7 +24,7 @@ const Feed = ( {blogs}:Props ) => {
     '>
 
     {/* <button onClick={() => console.log(blogs)}> LOG blogsState  </button> */}
-    <BlogsContainer blogsData = {blogs} />
+    <BlogsContainer blogsData = {blogs}  IsRecommendedCategoriesHeader={true} />
     
     </div>
   )

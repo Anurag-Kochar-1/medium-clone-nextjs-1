@@ -133,7 +133,7 @@ if(!hydrated) return null
           {/* <RecommendedCategoriesHeader  /> */}
           <Navbar />
           <Feed blogs={blogs}  />
-          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} blogs={allBlogsStateForSidebar} />
+          <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar}  />
         </main>
       )
       

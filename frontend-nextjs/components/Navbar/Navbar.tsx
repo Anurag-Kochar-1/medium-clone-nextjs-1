@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext , useState, useEffect, useRef} from 'react'
 import Link from "next/link"
 
 import {AiOutlineHome , AiOutlineBell, AiOutlineSearch, AiOutlineUser } from "react-icons/ai"
@@ -8,10 +8,26 @@ import {MdOutlineError} from "react-icons/md"
 
 import { useSession , signOut , signIn} from "next-auth/react"
 import { BlogsContext } from '../../context/Context'
+
 import UserProfilePopover from '../Popovers/UserProfilePopover'
 import UserProfileDropDown from '../Popovers/UserProfilePopover'
+import ProfileDropdown from '../Dropdown/ProfileDropdown'
+import useClickOutside from '../../helpers/clickOutside'
+
+// dropdownRef.current.style.display="none"
 
 const Navbar = () => {
+  const dropdownRef = useRef(null) 
+
+  const [isProfileDropdownOpen , setIsProfileDropdownOpen] = useState<boolean>(false)
+
+  const settingDropdownStateToFlase = () => { 
+    setIsProfileDropdownOpen(false)
+    console.log('close');
+   }
+
+  useClickOutside(dropdownRef, settingDropdownStateToFlase)
+
 
   const { blogDetails }:any = useContext(BlogsContext)
 
@@ -34,10 +50,13 @@ const Navbar = () => {
       </Link> 
       <AiOutlineBell className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
       <AiOutlineSearch className=' w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer ' />
-      <BsBookmarks className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
-      {!session && <AiOutlineUser className='w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer' />}
-      {session && <img src={ userProfilePicture } alt="dp" className='w-6 h-6 lg:hidden rounded-full  cursor-pointer ' onClick={() => signOut()} />}
 
+      <Link href={`/me/lists`}>
+        <BsBookmarks className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
+      </Link>
+
+        {!session && <AiOutlineUser onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)} className='w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer' />}
+        {session && <img  src={ userProfilePicture } alt="dp" className='w-6 h-6 lg:hidden rounded-full  cursor-pointer ' onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)} />}
 
      
         <BsJournalText className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
@@ -46,13 +65,23 @@ const Navbar = () => {
         </Link>
 
         
+        {/* ---------  Profile Dropdown --------- */}
+          {isProfileDropdownOpen &&
+            <div
+                ref={dropdownRef} 
+                className={'w-40 h-80 rounded-lg fixed right-1 lg:left-1 bottom-[12vh] flex flex-col items-center justify-center bg-gray-100 shadow-md shadow-gray-400'}>
+                    <p className='text-base font-medium text-gray-700 hover:cursor-pointer hover:text-black hover:scale-125' onClick={() => { session ? signOut() : signIn() }}> {session ? "Sign out" : "Sign in"}  </p>
+             </div>}
+        
 
-        {!session &&  <MdOutlineError onClick={()=> signIn()} className='hidden lg:inline fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '/>}
+            
+            {!session &&  <MdOutlineError onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)} className='hidden lg:inline fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '/>}
 
 
-        {session &&  <img src={ userProfilePicture } alt="dp" className='hidden lg:inline rounded-full  fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '
-          onClick={() => signOut()}
-        /> }
+            {session &&  <img src={ userProfilePicture }  alt="dp" className='hidden lg:inline rounded-full  fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '
+                        onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+            /> }
+          
 
 
         {/* <img src={ userProfilePicture } alt="dp" className='hidden lg:inline rounded-full  fixed bottom-10 w-9 h-9 text-red-700 cursor-pointer '

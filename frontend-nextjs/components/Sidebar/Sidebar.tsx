@@ -4,16 +4,18 @@ import SearchBar from './SearchBar/SearchBar'
 import SingleBlogPageSideBar from './SingleBlogPageSideBar/SingleBlogPageSideBar'
 import HomePageSidebar from './HomePageSidebar/HomePageSidebar'
 import { Blog } from '../../types/typings'
+import TopicPageSidebar from './TopicPageSidebar/TopicPageSidebar'
 
 
 interface Props {
   homePageSidebar?:string
   singleBlogPageSidebar?: string
+  topicPageSideBar?: string
   blogs?: Blog[] 
   blog?: Blog 
 }
 
-const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , blogs}:Props ) => {
+const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , topicPageSideBar , blogs }:Props ) => {
   
   
 
@@ -27,15 +29,13 @@ const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , blogs}:Props ) => {
 
     <SearchBar />
 
-    {homePageSidebar === 'yes' ? (
-      <>
-        <HomePageSidebar blogs={blogs} />
-      </>
-    ) : (
-      <> 
-        <SingleBlogPageSideBar  />
-      </>
-    )}
+
+
+    {homePageSidebar === 'yes' &&  <HomePageSidebar blogs={blogs}  />}
+
+    {singleBlogPageSidebar === 'yes' &&  <SingleBlogPageSideBar  />}
+
+    {topicPageSideBar === 'yes' && <TopicPageSidebar />  }
 
     </div>
   )

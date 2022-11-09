@@ -5,14 +5,15 @@ import BlogCard from './BlogCard/BlogCard'
 
 interface Props {
     blogsData: Blog[]
+    IsRecommendedCategoriesHeader: boolean
 }
 
-const BlogsContainer = ( {blogsData }:Props ) => {
+const BlogsContainer = ( {blogsData , IsRecommendedCategoriesHeader }:Props ) => {
 
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-start py-20 bg-white'>
+    <div className={ IsRecommendedCategoriesHeader ? 'w-full h-auto flex flex-col items-center justify-start py-20 px-5 bg-white' : 'w-full h-auto flex flex-col items-center justify-start py-5 px-5 bg-whtie' }>
         {/* <button onClick={() => console.log(blogsData)}> log blogsData from blogContainer  </button> */}
-        <RecommendedCategoriesHeader />
+       {IsRecommendedCategoriesHeader && <RecommendedCategoriesHeader />}
          
         {blogsData && blogsData.map((blog) => {
             return <BlogCard blog={blog} />

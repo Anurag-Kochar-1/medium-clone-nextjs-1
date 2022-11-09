@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Topics } from "../../../../constants/RecommendedTopicsConstants"
 
 const RecommendedTopics = () => {
@@ -8,7 +9,11 @@ const RecommendedTopics = () => {
 
         <div className='w-full flex flex-wrap justify-start items-center py-4'>
             {Topics.map((topic) => {
-                return <p className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
+                return (
+                  <Link href={`/tag/${topic}`}>
+                    <p className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
+                  </Link>
+                )
             })}
         </div>
  

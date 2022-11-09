@@ -1,83 +1,95 @@
-import React, {useEffect, useState} from 'react'
-import { BsBookmarkPlus , BsFillBookmarkFill} from 'react-icons/bs'
-import { Blog } from '../../types/typings'
+import React, { useEffect, useState  , useContext} from "react";
+import { BlogsContext } from "../../context/Context"
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { BsBookmarkPlus, BsFillBookmarkFill } from "react-icons/bs";
+import { Blog } from "../../types/typings";
 
 interface Props {
-    blogId: string
-    blog: Blog
+  blogId: string;
+  blog: Blog;
 }
 
+const BookmarkBtn = ({ blogId, blog }: Props) => {
+  console.log('------------BookmarkBtn is running -------------------');
+  
+    const {setAllBookmarkedBlogs} = useContext(BlogsContext)
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
-const BookmarkBtn = ( {blogId , blog}:Props ) => {
 
-    const [localStorageState, setLocalStorageState] = useState<any[]>([])
+  const [bookmarkedBlog, setBookmarkedBlog] = useLocalStorage( "bookmarkedBlogs" ,  []);
 
-    const [isBookmarked, setIsBookmarked] = useState<boolean>(false)
-
-    const [allBookmarkedBlogsState, setAllBookmarkedBlogsState] = useState<unknown>([])
-
-    let allBookmarkedBlogs:Blog[] = JSON.parse(localStorage.getItem("blogs") || "[]")
+  const bookmarkTheBlog = () => {
+    console.log('bookmarkTheBlog is running');
     
+    setBookmarkedBlog([ ...bookmarkedBlog , blog])
+    setIsBookmarked(true)
+    setAllBookmarkedBlogs(bookmarkedBlog)
+  }
 
-    const bookmarkBlog = () => {
-        setAllBookmarkedBlogsState([ ...allBookmarkedBlogs , blog ] )
-        // allBookmarkedBlogs.push(blog)
-        console.log('bookmarkBlog function is running');
-        // localStorage.setItem('blogs', JSON.stringify(allBookmarkedBlogs))
-        localStorage.setItem('blogs', JSON.stringify(allBookmarkedBlogsState))
-    }
+  const removeTheBookmarkedBlog = (blodId):string => {
+    console.log('removeTheBookmarkedBlog is running');
+    // console.log(bookmarkedBlog);
+    setBookmarkedBlog(bookmarkedBlog.filter((blog) => blog._id !== blodId))
+    setIsBookmarked(false)
+    setAllBookmarkedBlogs(bookmarkedBlog)
+    // console.log(bookmarkedBlog);
+    
+  }
 
-    const removeBookmarkedBlog = (blogId:string) => {
-        console.log('removeBookmarkedBlog is running');
-        
-        allBookmarkedBlogs.filter((blog) => {
-            return blog._id != blogId
-        })
+  const removingDuplicates = () => {
+    const result = bookmarkedBlog.reduce((finalArray , current) => {
+        let obj = finalArray.find((item) => item._id === current._id)
 
-    }
+        if(obj) {
+            return finalArray;
+        } else {
+            return finalArray.concat([current])
+        }
+    },[])
+    setBookmarkedBlog(result)
+  }
 
-    // const checkingBookmarkedOrNot = (blogId:string) => {
-    //     allBookmarkedBlogs.map((blog) => {
-    //         if( blog._id === blogId ) {
-    //             setIsBookmarked(true)
-    //             return blog
-    //         } else {
-    //             return blog
-    //         }
-    //     })
-    // }
+  useEffect(() => {
+    
+    let fresh:any = JSON.parse(localStorage.getItem("bookmarkedBlogs"))
+    console.log('fresh');
+    console.log(fresh);
+    setBookmarkedBlog(fresh)
+    removingDuplicates()
+    
+    bookmarkedBlog.map((blog) => {
+      if(blog._id === blogId) {
+        setIsBookmarked(true)
+      } else {
+        setIsBookmarked(false)
+      }
+    })
 
-
-
+    setAllBookmarkedBlogs(bookmarkedBlog)
+   },[isBookmarked])
 
 
   return (
     <>
-    <div className='flex justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-300 lg:border-0  hover:cursor-pointer'
-    onClick={() => alert('under construction') }
-    >
-            {!isBookmarked ? <BsBookmarkPlus className='w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black'/> : <BsFillBookmarkFill className='w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black'/> }
-                
-                
-                
-            <p className='text-gray-500 lg:hidden'> {!isBookmarked  ? "Save" : "Saved!"  } </p>
+        {/* <p onClick={() => removeTheBookmarkedBlog(blog._id )}> log removeTheBookmarkedBlog </p> */}
+        {/* <p onClick={() => console.log(bookmarkedBlog)}> log allBookmarkedBlogsState </p> */}
+      <div
+        className="flex justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-300 lg:border-0  hover:cursor-pointer"
+        onClick={() => !isBookmarked ?  bookmarkTheBlog() : removeTheBookmarkedBlog(blogId) }
+      >
+        
+        {!isBookmarked ? (
+          <BsBookmarkPlus className="w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
+        ) : (
+          <BsFillBookmarkFill className="w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
+        )}
 
+        <p className="text-gray-500 lg:hidden">
+          {!isBookmarked ? "Save" : "Saved!"}{" "}
+        </p>
+      </div>
+    </>
+  );
+};
 
-
-    </div>
-            {/* <button className='bg-red-400' onClick={() => console.log(JSON.parse(window.localStorage.getItem('blogs'))) }> log bookmarkedBlogsState  </button> */}
-            {/* <button className='bg-red-400' onClick={() => {
-                // localStorageState.map((item:any) => {
-                //     console.log( item)
-                // })
-                console.log(1);
-                
-                
-            }}> log bookmarkedBlogsState  </button> */}
-        </>
-    
-           
-  )
-}
-
-export default BookmarkBtn
+export default BookmarkBtn;

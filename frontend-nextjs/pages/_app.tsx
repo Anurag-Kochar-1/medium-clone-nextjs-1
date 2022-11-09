@@ -23,9 +23,14 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: a
   // Used for sidebar, so that query paramter doesn't affect stack picks
   const [allBlogsStateForSidebar , setAllBlogsStateForSidebar] = useState<Blog[]>([])
 
+  const [topicPageDetails , setTopicPageDetails] = useState<Blog[]>([])
+
+  // BookmarkedBlogs State
+  const [allBookmarkedBlogs, setAllBookmarkedBlogs] = useState<Blog[]>([])
+
   return (
     
-      <BlogsContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar }}>
+      <BlogsContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar , topicPageDetails , setTopicPageDetails , allBookmarkedBlogs , setAllBookmarkedBlogs  }}>
         <SessionProvider session={session}>
           <Component {...pageProps} />
           <ToastContainer />

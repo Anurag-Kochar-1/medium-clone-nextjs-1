@@ -21,7 +21,7 @@ const BlogCard = ( {blog}:Props ) => {
 
     if(!blog) return <h1 className='text-7xl font-bold'> FETCHING........ </h1>
   return (    
-        <div className='rounded-lg w-full  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
+        <div className='rounded-lg w-full bg-white  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
         border-b-2 border-b-gray-200 
         lg:w-[80%]
         '
