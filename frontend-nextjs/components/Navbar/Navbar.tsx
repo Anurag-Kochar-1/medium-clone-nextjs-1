@@ -12,9 +12,10 @@ import { BlogsContext } from '../../context/Context'
 import UserProfilePopover from '../Popovers/UserProfilePopover'
 import UserProfileDropDown from '../Popovers/UserProfilePopover'
 import ProfileDropdown from '../Dropdown/ProfileDropdown'
-import useClickOutside from '../../helpers/clickOutside'
 
-// dropdownRef.current.style.display="none"
+import useClickOutside from '../../helpers/clickOutside'
+import NotificationsModal from '../Modals/NotificationsModal'
+
 
 const Navbar = () => {
   const dropdownRef = useRef(null) 
@@ -39,30 +40,54 @@ const Navbar = () => {
       lg:relative lg:col-span-1 lg:h-screen lg:flex-col lg:justify-center lg:space-y-7 lg:items-center lg:border-t-0 lg:border-r lg:border-r-gray-200
     '>
 
+      
+
       <Link href={'/'}>
         <BsMedium className='hidden lg:inline fixed top-10 w-9 h-9 text-black cursor-pointer' /> 
       </Link>
+
 
       {/* <UserProfilePopover /> */}
 
       <Link href={'/'}>
         <AiOutlineHome className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
       </Link> 
-      <AiOutlineBell className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
+
+      <div className='hidden lg:inline' >
+        <NotificationsModal > 
+          <AiOutlineBell onClick={() => !session?.user && signIn()}  className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
+        </NotificationsModal>
+      </div>
+      
+
+
       <AiOutlineSearch className=' w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer ' />
 
-      <Link href={`/me/lists`}>
-        <BsBookmarks className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
-      </Link>
+      {session?.user ? (
+        <Link href={`/me/lists`}>
+          <BsBookmarks className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
+        </Link>
+      ) : (
+        <BsBookmarks onClick={() => signIn()} className='w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer ' />
+      )}
 
         {!session && <AiOutlineUser onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)} className='w-6 h-6 lg:hidden text-gray-600 hover:text-black active:text-black cursor-pointer' />}
         {session && <img  src={ userProfilePicture } alt="dp" className='w-6 h-6 lg:hidden rounded-full  cursor-pointer ' onClick={()=> setIsProfileDropdownOpen(!isProfileDropdownOpen)} />}
 
      
         <BsJournalText className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
-        <Link href={'/writeBlog'}>
-         <HiOutlinePencilSquare className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
-        </Link>
+
+        {session?.user ? (
+           <Link href={'/writeBlog'}>
+            <HiOutlinePencilSquare className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
+          </Link>
+        ): (
+          <HiOutlinePencilSquare onClick={() => signIn()} className='hidden lg:inline w-6 h-6 text-gray-600 hover:text-black active:text-black cursor-pointer' />
+        )}
+
+
+
+
 
         
         {/* ---------  Profile Dropdown --------- */}

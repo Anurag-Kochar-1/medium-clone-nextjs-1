@@ -9,12 +9,19 @@ import BookmarkBtn from '../Bookmark/BookmarkBtn'
 import Sidebar from '../Sidebar/Sidebar'
 import { BlogsContext } from '../../context/Context'
 
+import DOMPurify from "dompurify";
+import { useSession } from 'next-auth/react'
 
 interface Props {
     blog: Blog
 }
 
 const SingleBlogPage = ({blog}:Props) => {
+    const {data: session } = useSession() 
+
+    function createMarkup (body) {
+        return {_html: body}
+    }
     const { setBlogDetails }:any = useContext(BlogsContext) 
     
     
@@ -24,7 +31,7 @@ const SingleBlogPage = ({blog}:Props) => {
     
   return (
     
-    <div className='w-full bg-white flex flex-col just items-center px-2 md:w-[80%] lg:w-[70%] scrollbar-hide'>
+    <div className='w-full bg-white flex flex-col just items-center px-2 pb-40  md:w-[80%] lg:w-[70%] scrollbar-hide'>
 
     
         <Head>
@@ -40,25 +47,39 @@ const SingleBlogPage = ({blog}:Props) => {
             </div>
 
             <div className='w-full 0  flex justify-start items-center py-2 md:justify-end '>
-
                 <BookmarkBtn blogId={blog._id} blog={blog} />
 
-                <Dropdown blogId={blog._id} creatorEmail={blog.userEmail as string} />
-
-
-            
+                {session?.user?.email === blog.userEmail && <Dropdown blogId={blog._id} creatorEmail={blog.userEmail as string} />}
             </div>
+
         </div>
 
-        <div className='w-full flex flex-col justify-center items-center'>
+        <div className='w-full flex flex-col justify-center items-center '>
             <h1 className='text-3xl font-bold text-black mt-5 mb-1 lg:text-4xl'> {blog.title} </h1>
-            <h3 className='text-lg font-medium text-gray-700 mb-3 md:my-7'> {blog.previewSubtitle} </h3>
+            <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md py-10' />
+            {/* <h3 className='text-lg font-medium text-gray-700 mb-3 md:my-7'> {blog.previewSubtitle} </h3> */}
+            {/* <div
+                className='text-lg font-medium text-gray-700 mb-3 md:my-7'
+                dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(blog.previewSubtitle)
+                }}
+            /> */}
         </div>
-        <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md' />
+        {/* <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md' /> */}
 
         <OptionsBottomBar likeCount={blog.likeCount} blogId={blog._id} />
 
-        <p className='my-9 text-gray-800 text-base md:text-lg md:font-normal'> {blog.body} </p>
+
+        {/* <p className='my-9 text-gray-800 text-base md:text-lg md:font-normal'> {blog.body} </p> */}
+
+        {/* <div dangerouslySetInnerHTML={createMarkup(blog.body)}></div> */}
+        <div
+            dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(blog.body)
+            }}
+        />
+
+        
 
         {/* {blog.body} */}
 

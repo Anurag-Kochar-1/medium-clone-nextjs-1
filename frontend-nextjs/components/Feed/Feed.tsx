@@ -5,6 +5,7 @@ import { Blog  } from "../../types/typings"
 import BlogsContainer from "../BlogsContainer/BlogsContainer"
 import RecommendedCategoriesHeader from '../RecommendedCategoriesHeader/RecommendedCategoriesHeader';
 import UserProfilePopover from '../Popovers/UserProfilePopover';
+import NotificationsModal from '../Modals/NotificationsModal';
 interface Props {
   blogs: Blog[]
 }
@@ -22,7 +23,7 @@ const Feed = ( {blogs}:Props ) => {
     <div className='col-span-12 px-2 pb-10 max-h-screen mt-[16vh] mb-[10vh] overflow-y-scroll scrollbar-hide
     lg:col-span-8 lg:mt-[0vh] lg:mb-0 
     '>
-
+      
     {/* <button onClick={() => console.log(blogs)}> LOG blogsState  </button> */}
     <BlogsContainer blogsData = {blogs}  IsRecommendedCategoriesHeader={true} />
     

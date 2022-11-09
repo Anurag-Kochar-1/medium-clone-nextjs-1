@@ -70,12 +70,12 @@ const index = () => {
         lg:bg-white lg:px-32
         xl:bg-white xl:px-40
         '>
-          <button onClick={() => console.log(blogContent)}> log BlogConten </button>
+          {/* <button onClick={() => console.log(blogContent)}> log BlogConten </button> */}
             
             <input 
               type="text" 
               placeholder='Title'
-              className='outline-none border-none w-[85%] bg-white placeholder:text-gray-900 px-2 py-3 mb-3 placeholder:font-medium font-serif placeholder:text-2xl text-xl text-gray-900'
+              className='rounded-sm border-[1px] border-gray-400 w-[85%] bg-white placeholder:text-gray-900 px-2 py-3 mb-3 placeholder:font-medium font-serif placeholder:text-2xl text-xl text-gray-900'
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value)
@@ -97,15 +97,9 @@ const index = () => {
               formats={formats}
               onChange={handleBlogContent}
               value={blogContent}
+              className='outline-none w-[85%] rounded-lg h-[65vh] my-3 bg-white placeholder:text-gray-900 placeholder:font-medium font-serif placeholder:text-lg text-lg text-gray-900' 
             
             />
-
-
-          
-            
-
-             
-
 
 
         </main>}

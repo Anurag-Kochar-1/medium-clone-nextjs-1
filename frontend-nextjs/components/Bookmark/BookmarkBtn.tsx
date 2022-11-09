@@ -4,6 +4,9 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import { BsBookmarkPlus, BsFillBookmarkFill } from "react-icons/bs";
 import { Blog } from "../../types/typings";
 
+import { useSession , signIn } from "next-auth/react"
+import { sign } from "crypto";
+
 interface Props {
   blogId: string;
   blog: Blog;
@@ -11,8 +14,9 @@ interface Props {
 
 const BookmarkBtn = ({ blogId, blog }: Props) => {
   console.log('------------BookmarkBtn is running -------------------');
-  
-    const {setAllBookmarkedBlogs} = useContext(BlogsContext)
+  const {data: session} = useSession()
+
+  const {setAllBookmarkedBlogs} = useContext(BlogsContext)
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
 
@@ -75,7 +79,17 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
         {/* <p onClick={() => console.log(bookmarkedBlog)}> log allBookmarkedBlogsState </p> */}
       <div
         className="flex justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-300 lg:border-0  hover:cursor-pointer"
-        onClick={() => !isBookmarked ?  bookmarkTheBlog() : removeTheBookmarkedBlog(blogId) }
+        // onClick={() => !isBookmarked ?  bookmarkTheBlog() : removeTheBookmarkedBlog(blogId) }
+        onClick={() => {
+          if(!isBookmarked && session?.user) {
+            bookmarkTheBlog()
+          } else if ( isBookmarked && session?.user ) {
+            removeTheBookmarkedBlog(blogId)
+          } else if (!session?.user) {
+            signIn()
+          }
+          
+        }}
       >
         
         {!isBookmarked ? (
@@ -85,7 +99,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
         )}
 
         <p className="text-gray-500 lg:hidden">
-          {!isBookmarked ? "Save" : "Saved!"}{" "}
+          {!isBookmarked ? "Save" : "Saved!"}
         </p>
       </div>
     </>

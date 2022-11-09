@@ -3,7 +3,7 @@ import blogCoverImageThumbnail from "../../public/images/blogCoverImageThumbnail
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-import { useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -180,6 +180,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   <MenuItem value={'Design'}> Design </MenuItem>
                   <MenuItem value={'Books'}> Books </MenuItem>
                   <MenuItem value={'Investing'}> Investing </MenuItem>
+                  <MenuItem value={'Food'}> Food </MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -189,8 +190,15 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
               <button
               className="bg-green-600 text-white px-6 py-1 rounded-full cursor-pointer disabled:bg-green-300 disabled:hover:cursor-not-allowed "
               onClick={() =>  {
-                addBlogBtnFunc()
-                router.push('/')
+                if(session?.user && title && blogContent && category && image && previewSubtitle) {
+                  addBlogBtnFunc()
+                  router.push('/')
+                } else if (!session?.user) {
+                  signIn()
+                } 
+                else {
+                  alert("Incomplete fields!")
+                }
               }}
               > Publish </button>
 

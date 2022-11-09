@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {AiOutlineLike , AiFillLike} from 'react-icons/ai'
 import {FaRegComment} from 'react-icons/fa'
 import {BsThreeDots} from 'react-icons/bs'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import likeBlogById from '../../apis/likeBlogById'
 
 interface Props {
@@ -19,7 +19,8 @@ const OptionsBottomBar = ( {blogId , likeCount}:Props ) => {
       if(session?.user ) {
         const data = await likeBlogById(blogId as string)
         console.log(`likeBlogFunction is running---------`);
-        
+     } else if (!session?.user) {
+        signIn()
      }
     } catch (error) {
       console.log(error);

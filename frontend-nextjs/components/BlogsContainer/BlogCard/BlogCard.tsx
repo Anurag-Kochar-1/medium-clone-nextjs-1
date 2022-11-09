@@ -6,6 +6,7 @@ import { Blog } from '../../../types/typings'
 import Dropdown from '../../Dropdown/Dropdown'
 import { useSession } from "next-auth/react"
 import BookmarkBtn from '../../Bookmark/BookmarkBtn'
+import Image from 'next/image'
 
 interface Props {
     blog:Blog
@@ -13,6 +14,8 @@ interface Props {
 
 
 const BlogCard = ( {blog}:Props ) => {
+    console.log(blog);
+    
     const {blogDetails , setBlogDetails}:any = useContext(BlogsContext)
     const day = blog._createdAt
 
@@ -31,6 +34,7 @@ const BlogCard = ( {blog}:Props ) => {
                     <div className=' w-full flex justify-start items-center space-x-3 py-2     '>
                         <img  src={blog.profileImg as string } alt="dp" 
                         className='rounded-full w-6 h-6 '/>
+                        {/* <Image src={blog.profileImg as string } alt="dp" height={5} width={5} /> */}
                         <p className='text-sm font-normal text-black'> {blog.username} </p>
                         <p className='text-sm font-normal text-gray-800'> 8 Oct </p>
 
@@ -44,7 +48,12 @@ const BlogCard = ( {blog}:Props ) => {
                     </Link>
 
                     <div className='flex flex-row justify-between items-center w-full px-4'>
-                        <p className='px-3 py-1  text-sm rounded-full bg-gray-200'> {blog.category} </p>
+                    <p className='px-3 py-1  text-sm rounded-full bg-gray-200'> {blog.category} </p>
+                        {/* <Link href={`/?=${blog.category}`}> 
+                            <a>
+                                <p className='px-3 py-1  text-sm rounded-full bg-gray-200 hover:cursor-pointer'> {blog.category} </p>
+                            </a> 
+                        </Link>  */}
                         {/* <p className='text-sm bg-red-900'> 7 min read </p> */}
                         <div className=' flex items-center space-x-3'>
                             {/* <BsBookmarkPlus className='w-4 h-4 text-gray-700 hover:cursor-pointer  md:w-5 md:h-5'/> */}

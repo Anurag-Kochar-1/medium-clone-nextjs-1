@@ -25,9 +25,12 @@ const WriteBlogTopBar = ( { isPageNumber2 , setIsPageNumber2}:Props ) => {
     
     '>
         
-        {/* <Link href={'/'}> <BsMedium className=' w-9 h-9 text-black cursor-pointer' />   </Link> */}
+        <Link href={'/'}>
+            <a> <BsMedium className=' w-9 h-9 text-black cursor-pointer' />    </a>  
+        </Link>
         
-        <BsMedium className=' w-9 h-9 text-black cursor-pointer' /> 
+        {/* <BsMedium className=' w-9 h-9 text-black cursor-pointer' />  */}
+
         <p  className='font-medium  text-xl flex-1 px-3'> Write  </p>
         
         
