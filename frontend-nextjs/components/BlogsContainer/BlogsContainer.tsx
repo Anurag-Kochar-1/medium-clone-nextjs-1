@@ -9,8 +9,11 @@ interface Props {
 }
 
 const BlogsContainer = ( {blogsData , IsRecommendedCategoriesHeader }:Props ) => {
-
+  // console.log(`blogsData`);
+  // console.log(blogsData);
+  
   return (
+    
     <div className={ IsRecommendedCategoriesHeader ? 'w-full h-auto flex flex-col items-center justify-start py-20 px-5 bg-white' : 'w-full h-auto flex flex-col items-center justify-start py-5 px-5 bg-whtie' }>
         {/* <button onClick={() => console.log(blogsData)}> log blogsData from blogContainer  </button> */}
        {IsRecommendedCategoriesHeader && <RecommendedCategoriesHeader />}

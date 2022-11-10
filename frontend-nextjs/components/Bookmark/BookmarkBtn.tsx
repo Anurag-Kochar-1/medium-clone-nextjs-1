@@ -13,7 +13,7 @@ interface Props {
 }
 
 const BookmarkBtn = ({ blogId, blog }: Props) => {
-  console.log('------------BookmarkBtn is running -------------------');
+  // console.log('------------BookmarkBtn is running -------------------');
   const {data: session} = useSession()
 
   const {setAllBookmarkedBlogs} = useContext(BlogsContext)
@@ -31,7 +31,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
   }
 
   const removeTheBookmarkedBlog = (blodId):string => {
-    console.log('removeTheBookmarkedBlog is running');
+    // console.log('removeTheBookmarkedBlog is running');
     // console.log(bookmarkedBlog);
     setBookmarkedBlog(bookmarkedBlog.filter((blog) => blog._id !== blodId))
     setIsBookmarked(false)
@@ -56,8 +56,8 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
   useEffect(() => {
     
     let fresh:any = JSON.parse(localStorage.getItem("bookmarkedBlogs"))
-    console.log('fresh');
-    console.log(fresh);
+    // console.log('fresh');
+    // console.log(fresh);
     setBookmarkedBlog(fresh)
     removingDuplicates()
     

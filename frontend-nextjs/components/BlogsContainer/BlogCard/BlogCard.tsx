@@ -14,7 +14,7 @@ interface Props {
 
 
 const BlogCard = ( {blog}:Props ) => {
-    console.log(blog);
+    // console.log(blog);
     
     const {blogDetails , setBlogDetails}:any = useContext(BlogsContext)
     const day = blog._createdAt

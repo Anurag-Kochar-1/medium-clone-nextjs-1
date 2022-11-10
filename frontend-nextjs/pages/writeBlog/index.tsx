@@ -12,6 +12,15 @@ import "quill/dist/quill.snow.css"
 
 
 const index = () => {
+  const [hydrated, setHydrated] = useState<boolean>(false);
+
+  useEffect(() => {
+    setHydrated(true)
+    console.log(`setHydrated is set to true from writeBlog  index.tsx`);
+    
+    
+    
+  },[])
 
   const { quill, quillRef } = useQuill();
 
@@ -55,9 +64,12 @@ const index = () => {
     // console.log(e)
     setBlogContent(e)
   }
+
+
+  if(!hydrated) return null
+
   return (
 
-    
     <div className='col-span-12 scrollbar-hide bg-white '>
       <Head>
         <title> Write a Blog </title>

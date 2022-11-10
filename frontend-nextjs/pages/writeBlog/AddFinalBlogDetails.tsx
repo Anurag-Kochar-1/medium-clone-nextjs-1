@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 import { signIn, useSession } from "next-auth/react"
+import refreshFeed from '../../utils/functions/refreshFeed'
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,6 +14,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { BlogBody } from '../../types/typings';
 
 import { toast  } from "react-toastify";
+
+import { useContext } from "react";
+import { BlogsContext } from "../../context/Context"
 
 
 
@@ -25,8 +29,10 @@ interface Props {
 }
 
 const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:Props ) => {
+
   const showBlogPostedToast = () => toast('Blog Posted', { hideProgressBar: true, autoClose: 2000, type: 'success' ,position:'bottom-center'})
 
+  const { setBlogs } = useContext(BlogsContext) 
   const router = useRouter()
 
   const {data: session} = useSession()
@@ -35,16 +41,22 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
   const [isUploadImageBoxVisible , setIsUploadImageBoxVisible] = useState <boolean> (false)
   const [imageUrlInput, setImageUrlInput] = useState <string> ('')
   const [image, setImage] = useState<string> ('')
-  const [previewSubtitle , setPreviewSubtitle] = useState<string>(blogContent)
+  const [previewSubtitle , setPreviewSubtitle] = useState<string>('')
   const [category, setCategory] = useState<string>('');
 
   const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
   };
 
+  const reFetchingBlogs = async () => {
+    const refreshingFeed = await refreshFeed()
+    const data = await refreshingFeed
+    setBlogs(data)
+  }
+
   const postBlog = async () => {
     try {
-      console.log('postBlog is running');
+      // console.log('postBlog is running');
 
       const blogBody: BlogBody = {
         username: session?.user?.name,
@@ -67,6 +79,18 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
     })
     const json = await result.json()
 
+
+    // ====================== Refreshing Feed ======================
+    // refreshFeed().then((res) => {
+    //   console.log(`refreshedFeed`);
+    //   console.log(res) 
+    //   setBlogs(res)
+    // }).catch((err) => console.log(err))
+
+    reFetchingBlogs()
+    
+
+
     showBlogPostedToast()
       
     } catch (error) {
@@ -82,6 +106,8 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
 
   }
 
+
+
   return (
     <main className='col-span-12 bg-white flex flex-col py-9 items-center justify-start px-3  mt-[8vh] h-[92vh] overflow-y-scroll overflow-x-hidden scrollbar-hide
 
@@ -92,7 +118,9 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
         <div className='w-[90%] h-auto bg-white py-2 flex flex-col items-center justify-start
         lg:w-[40%]
         '>
-            <p className='text-lg text-left font-medium my-2 mx-1'> Story Preview </p>
+            <p className='text-lg text-left font-medium my-2 mx-1' onClick={ () => {
+              return null
+            }}> Story Preview </p>
             <img src={ image ? image : blogCoverImageThumbnail.src } alt="demo-cover" className='rounded-md' />
 
             <button 
@@ -140,7 +168,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
 
 
               <textarea 
-                placeholder='Write a preview subtitle' 
+                placeholder='Write a preview subtitle in less than 150 words' 
                 className='w-[95%] h-32 bg-gray-100  outline-none border-solid font-normal border-b-4 border-b-gray-300 my-3 px-2 py-3 text-black ' 
                 onChange={(e) => {
                   setPreviewSubtitle(e.target.value)
@@ -173,14 +201,19 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   onChange={handleCategoryChange}
                 >
                   <MenuItem value={'Tech'}> Tech </MenuItem>
+                  <MenuItem value={'Science'}> Science </MenuItem>
                   <MenuItem value={'Business'}> Business </MenuItem>
                   <MenuItem value={'Travel'}> Travel </MenuItem>
                   <MenuItem value={'Movies'}> Movies </MenuItem>
+                  <MenuItem value={'Fitness'}> Fitness </MenuItem>
                   <MenuItem value={'Web3'}> Web 3 </MenuItem>
                   <MenuItem value={'Design'}> Design </MenuItem>
                   <MenuItem value={'Books'}> Books </MenuItem>
                   <MenuItem value={'Investing'}> Investing </MenuItem>
                   <MenuItem value={'Food'}> Food </MenuItem>
+                  <MenuItem value={'Economy'}> Economy </MenuItem>
+                  <MenuItem value={'GeoPolitics'}> GeoPolitics </MenuItem>
+                  <MenuItem value={'Fashion'}> Fashion </MenuItem>
                 </Select>
               </FormControl>
             </Box>

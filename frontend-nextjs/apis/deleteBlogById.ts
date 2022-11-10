@@ -15,7 +15,7 @@ export const deleteBlogById = async (blogId:string) => {
     console.log('------------------------------- LOGGING FROM deleteBlogById Function');
     
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}api/deleteBlog?blogId=${blogId}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PROD}api/deleteBlog?blogId=${blogId}`)
 
 }
 

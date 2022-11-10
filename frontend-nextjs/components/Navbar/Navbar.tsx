@@ -18,22 +18,38 @@ import NotificationsModal from '../Modals/NotificationsModal'
 
 
 const Navbar = () => {
+  const  {data: session} = useSession()
+  const [hydrated, setHydrated] = useState<boolean>(false);
+
+  useEffect(() => {
+    setHydrated(true)
+    console.log(`setHydrated is set to true from navbar.tsx`);
+    
+    
+    
+  },[])
+  
   const dropdownRef = useRef(null) 
-
   const [isProfileDropdownOpen , setIsProfileDropdownOpen] = useState<boolean>(false)
-
+  
   const settingDropdownStateToFlase = () => { 
     setIsProfileDropdownOpen(false)
     console.log('close');
-   }
-
+  }
+  
   useClickOutside(dropdownRef, settingDropdownStateToFlase)
 
 
   const { blogDetails }:any = useContext(BlogsContext)
 
-  const  {data: session} = useSession()
+  
   let userProfilePicture:any = session?.user?.image  
+
+
+
+
+  if(!hydrated) return null
+
 
   return (
     <nav className='fixed z-40 bottom-0 w-full h-[10vh] bg-white flex justify-between items-center px-8 border-t border-t-gray-400

@@ -56,6 +56,7 @@ const SingleBlogPage = ({blog}:Props) => {
 
         <div className='w-full flex flex-col justify-center items-center '>
             <h1 className='text-3xl font-bold text-black mt-5 mb-1 lg:text-4xl'> {blog.title} </h1>
+            <h3 className='text-lg font-medium text-gray-700 mb-3 md:my-7'> {blog.previewSubtitle} </h3>
             <img src={blog.coverImage} alt="cover-image" className='w-[90%] object-contain rounded-md py-10' />
             {/* <h3 className='text-lg font-medium text-gray-700 mb-3 md:my-7'> {blog.previewSubtitle} </h3> */}
             {/* <div

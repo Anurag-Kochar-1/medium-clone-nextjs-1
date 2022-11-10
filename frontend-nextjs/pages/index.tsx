@@ -16,7 +16,6 @@ import RecommendedCategoriesHeader from '../components/RecommendedCategoriesHead
 import { useRouter } from 'next/router'
 import { fetchBlogsByTag } from '../apis/fetchBlogsByTag'
 
-// import "../styles/stylesScroll.css"
 
 interface Props {
   Allblogs: Blog[]
@@ -37,35 +36,7 @@ export default function Home( {Allblogs}:Props  ) {
   },[])
 
   
-  // useEffect(()=> {
-  //   setBlogs(Allblogs)
-  // },[Allblogs])  
-
-  // const mainRef = useRef(null)
-  // let lastScroll = 0
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     const currentScroll = window.pageYOffset;
-  //     if (currentScroll <= 0) {
-  //       document.body.classList.remove("scroll-up");
-  //       return;
-  //     }
-    
-  //     if (currentScroll > lastScroll && !document.body.classList.contains("scroll-down")) {
-  //       document.body.classList.remove("scroll-up");
-  //       document.body.classList.add("scroll-down");
-  //     } else if (
-  //       currentScroll < lastScroll &&
-  //       document.body.classList.contains("scroll-down")
-  //     ) {
-  //       document.body.classList.remove("scroll-down");
-  //       document.body.classList.add("scroll-up");
-  //     }
-  //     lastScroll = currentScroll;
-  //   });
-    
-  // },[])
+  
 
 
   // ----------------- RecommendedCatogries ----------------------
@@ -74,25 +45,15 @@ export default function Home( {Allblogs}:Props  ) {
   const { tag } = router.query
   const [searchQuery, setSearchQuery] = useState("");
 
-
-
-
   const fetchBlogsByTagFunction = async ( searchQuery:string ) => {
-    console.log(` fetchBlogsByTagFunction is running :  ${searchQuery} `);
-  
+    // console.log(` fetchBlogsByTagFunction is running :  ${searchQuery} `);
     // const BlogsByTag:any = await fetchBlogsByTag( searchQuery as string  )        
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}api/getBlogsByTag?tag=${searchQuery}`)
-
     const  { blogsByTag } : any = await res.json()
-
-    console.log(blogsByTag);
-    
+    // console.log(blogsByTag);
     setBlogs(blogsByTag)
-
     return blogsByTag
-
-
 }
 
   
@@ -103,9 +64,6 @@ useEffect(() => {
   console.log(`setHydrated is set to true from index.tsx`);
   
 },[])
-
-
-
 
 if(!hydrated) return null
 
@@ -156,3 +114,34 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 }
 
 
+
+
+// useEffect(()=> {
+//     setBlogs(Allblogs)
+//   },[Allblogs])  
+
+//   const mainRef = useRef(null)
+//   let lastScroll = 0
+
+//   useEffect(() => {
+//     window.addEventListener("scroll", () => {
+//       const currentScroll = window.pageYOffset;
+//       if (currentScroll <= 0) {
+//         document.body.classList.remove("scroll-up");
+//         return;
+//       }
+    
+//       if (currentScroll > lastScroll && !document.body.classList.contains("scroll-down")) {
+//         document.body.classList.remove("scroll-up");
+//         document.body.classList.add("scroll-down");
+//       } else if (
+//         currentScroll < lastScroll &&
+//         document.body.classList.contains("scroll-down")
+//       ) {
+//         document.body.classList.remove("scroll-down");
+//         document.body.classList.add("scroll-up");
+//       }
+//       lastScroll = currentScroll;
+//     });
+    
+//   },[])

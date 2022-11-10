@@ -1,6 +1,6 @@
 
 export const fetchBlogs = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/getBlogs`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PROD}/api/getBlogs`)
     const data = await res.json()
     const blogs:any = data.blogs
 
