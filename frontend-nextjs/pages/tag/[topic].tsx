@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 
 
-const topic = () => {
+const Topic = () => {
     const { setTopicPageDetails  } : {setTopicPageDetails: React.Dispatch<React.SetStateAction<Blog[]>>} = useContext(BlogsContext)
     const [isFollowed , setIsFollowed] = useState<boolean>(false)
     const [allBlogsByTopic , setAllBlogsByTopic ] = useState<Blog[]>([])
@@ -84,4 +84,4 @@ const topic = () => {
   )
 }
 
-export default topic
+export default Topic
