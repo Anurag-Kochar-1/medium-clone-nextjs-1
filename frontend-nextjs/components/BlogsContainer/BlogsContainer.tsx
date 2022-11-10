@@ -19,7 +19,7 @@ const BlogsContainer = ( {blogsData , IsRecommendedCategoriesHeader }:Props ) =>
        {IsRecommendedCategoriesHeader && <RecommendedCategoriesHeader />}
          
         {blogsData && blogsData.map((blog) => {
-            return <BlogCard blog={blog} />
+            return <BlogCard key={blog._id} blog={blog} />
         })}
     </div>
   )
