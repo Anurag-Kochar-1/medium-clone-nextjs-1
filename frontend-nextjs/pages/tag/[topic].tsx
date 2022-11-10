@@ -12,7 +12,7 @@ import Link from 'next/link'
 
 
 const Topic = () => {
-    const { setTopicPageDetails  } : {setTopicPageDetails: React.Dispatch<React.SetStateAction<Blog[]>>} = useContext(BlogsContext)
+    const { setTopicPageDetails  }:any = useContext(BlogsContext)
     const [isFollowed , setIsFollowed] = useState<boolean>(false)
     const [allBlogsByTopic , setAllBlogsByTopic ] = useState<Blog[]>([])
     const router = useRouter()
