@@ -51,11 +51,8 @@ const BlogPage  = (  ) => {
         {/* <button onClick={() => console.log(singleBlogData.slice(0,1))}> singleBlogData </button> */}
             
               {singleBlogData && singleBlogData.slice(0,1)?.map((blog) => {
-                return (
-                  <div key={blog._id}>
-                    <SingleBlogPage  key={blog._id} blog={blog} />
-                  </div>
-                )
+                return <SingleBlogPage  key={blog._id} blog={blog} />
+                    
               })}
 
 

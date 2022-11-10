@@ -32,7 +32,7 @@ const SingleBlogPage = ({blog , key}:Props) => {
     
   return (
     
-    <div key={key} className='w-full bg-white flex flex-col just items-center px-2 pb-40  md:w-[80%] lg:w-[70%] scrollbar-hide'>
+    <div key={key} className='w-full bg-white flex flex-col justify-start items-center px-2 pb-40  md:w-[80%] lg:w-[70%] scrollbar-hide'>
 
     
         <Head>
