@@ -20,7 +20,11 @@ const StaffPicks = ({blogs}:Props) => {
       
       <div className='w-full my-2 px-1'>
         {blogs.map((blog , index) => {
-            return blog.staffPicks === true && <StaffPicksBlogCard key={index} blog={blog} /> 
+            return blog.staffPicks === true && (
+              <div key={blog._id}>
+                <StaffPicksBlogCard  blog={blog} /> 
+              </div>
+            )
         })}
       </div>
     </div>
