@@ -16,7 +16,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
   // console.log('------------BookmarkBtn is running -------------------');
   const {data: session} = useSession()
 
-  const {setAllBookmarkedBlogs} = useContext(BlogsContext)
+  const {setAllBookmarkedBlogs}:any = useContext(BlogsContext)
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
 
@@ -30,7 +30,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
     setAllBookmarkedBlogs(bookmarkedBlog)
   }
 
-  const removeTheBookmarkedBlog = (blodId):string => {
+  const removeTheBookmarkedBlog = (blodId:any) => {
     // console.log('removeTheBookmarkedBlog is running');
     // console.log(bookmarkedBlog);
     setBookmarkedBlog(bookmarkedBlog.filter((blog) => blog._id !== blodId))
