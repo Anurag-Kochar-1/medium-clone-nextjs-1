@@ -29,7 +29,7 @@ const Navbar = () => {
     
   },[])
   
-  const dropdownRef = useRef(null) 
+  const dropdownRef:React.RefObject<HTMLDivElement> = useRef(null) 
   const [isProfileDropdownOpen , setIsProfileDropdownOpen] = useState<boolean>(false)
   
   const settingDropdownStateToFlase = () => { 

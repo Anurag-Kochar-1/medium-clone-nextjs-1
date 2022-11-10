@@ -5,7 +5,7 @@ interface Props {
     settingDropdownStateToFlase: () => void
 }
 
-export default function useClickOutside (dropdownRef:React.MutableRefObject<null> , settingDropdownStateToFlase:()=>void) {
+export default function useClickOutside (dropdownRef:React.RefObject<HTMLDivElement> , settingDropdownStateToFlase:()=>void) {
     useEffect(() =>{ 
       
         const listener = (e: any) => {
