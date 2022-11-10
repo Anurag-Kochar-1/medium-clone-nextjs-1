@@ -9,7 +9,7 @@ const SingleBlogPageSideBar = ( ) => {
 
   return (
     <div className='w-[90%] flex flex-col items-center justify-center '>
-      {/* <SideBarProfile /> */}
+      <SideBarProfile />
       <RecommendedTopics />
     </div>
   )
