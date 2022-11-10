@@ -12,7 +12,7 @@ interface Props {
   singleBlogPageSidebar?: string
   topicPageSideBar?: string
   blogsForSidebar?: Blog[] 
-  blog?: Blog 
+  // blog?: Blog 
 }
 
 const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , topicPageSideBar , blogsForSidebar }:Props ) => {

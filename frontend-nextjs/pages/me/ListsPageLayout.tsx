@@ -15,7 +15,8 @@ const ListsPageLayout = ({children}:LayoutProps) => {
             <HomeTopBar />
             <Navbar />
             {children} 
-            <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar} blogs={blogs}   />
+            <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar}   />
+            {/* <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar} blogs={blogs}   /> */}
     </div>
   )
 }
