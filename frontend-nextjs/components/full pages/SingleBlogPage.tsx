@@ -20,7 +20,7 @@ interface Props {
 const SingleBlogPage = ({blog , key}:Props) => {
     const {data: session } = useSession() 
 
-    function createMarkup (body) {
+    function createMarkup (body:any) {
         return {_html: body}
     }
     const { setBlogDetails }:any = useContext(BlogsContext) 
@@ -44,7 +44,7 @@ const SingleBlogPage = ({blog , key}:Props) => {
                 <img src={blog.profileImg as string} alt="dp"
                 className='rounded-full w-10 h-10 mr-2'
                 />
-                <p className='text-base font-medium text-gray-800'> {blog.username} </p>
+                <p className='text-base font-medium text-gray-800'> {blog.username as string} </p>
             </div>
 
             <div className='w-full 0  flex justify-start items-center py-2 md:justify-end '>
@@ -77,7 +77,7 @@ const SingleBlogPage = ({blog , key}:Props) => {
         {/* <div dangerouslySetInnerHTML={createMarkup(blog.body)}></div> */}
         <div
             dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(blog.body)
+            __html: DOMPurify.sanitize(blog.body )
             }}
         />
 
