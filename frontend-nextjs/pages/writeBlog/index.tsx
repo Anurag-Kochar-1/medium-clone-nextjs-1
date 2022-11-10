@@ -11,7 +11,7 @@ import "quill/dist/quill.snow.css"
 
 
 
-const index = () => {
+const Index = () => {
   const [hydrated, setHydrated] = useState<boolean>(false);
 
   useEffect(() => {
@@ -122,4 +122,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
