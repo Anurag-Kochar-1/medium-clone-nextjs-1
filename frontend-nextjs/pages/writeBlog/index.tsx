@@ -60,7 +60,7 @@ const Index = () => {
   const [title, setTitle] =  useState<string>('')
   const [blogContent, setBlogContent] =  useState<string>('')
 
-  const handleBlogContent = (e) => {
+  const handleBlogContent = (e:any) => {
     // console.log(e)
     setBlogContent(e)
   }
