@@ -35,7 +35,8 @@ const BlogCard = ( {blog}:Props ) => {
                         <img  src={blog.profileImg as string } alt="dp" 
                         className='rounded-full w-6 h-6 '/>
                         {/* <Image src={blog.profileImg as string } alt="dp" height={5} width={5} /> */}
-                        <p className='text-sm font-normal text-black'> {blog.username} </p>
+                        
+                        <p className='text-sm font-normal text-black'> {blog.username as string} </p>
                         <p className='text-sm font-normal text-gray-800'> 8 Oct </p>
 
                     </div>
