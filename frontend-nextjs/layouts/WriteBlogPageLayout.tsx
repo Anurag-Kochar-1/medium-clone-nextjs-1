@@ -9,7 +9,7 @@ const WriteBlogPageLayout = ({children}:HomeLayoutProps) => {
     return (
         <div className="grid grid-cols-12">
 
-            <WriteBlogTopBar/>
+            {/* <WriteBlogTopBar /> */}
             {children}
 
         </div>

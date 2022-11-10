@@ -32,7 +32,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
 
   const showBlogPostedToast = () => toast('Blog Posted', { hideProgressBar: true, autoClose: 2000, type: 'success' ,position:'bottom-center'})
 
-  const { setBlogs } = useContext(BlogsContext) 
+  const { setBlogs }:any = useContext(BlogsContext) 
   const router = useRouter()
 
   const {data: session} = useSession()
