@@ -33,7 +33,7 @@ const RecommendedCategoriesHeader = (  ) => {
     
       // const BlogsByTag:any = await fetchBlogsByTag( searchQuery as string  )        
       
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}api/getBlogsByTag?tag=${searchQuery}`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PROD}api/getBlogsByTag?tag=${searchQuery}`)
   
       const  { blogsByTag } : any = await res.json()
   
