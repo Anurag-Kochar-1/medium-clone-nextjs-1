@@ -10,9 +10,12 @@ const RecommendedTopics = () => {
         <div className='w-full flex flex-wrap justify-start items-center py-4'>
             {Topics.map((topic, index) => {
                 return (
-                  <Link href={`/tag/${topic}`}>
-                    <p key={index} className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
-                  </Link>
+                  <div key={index}>
+                    <Link href={`/tag/${topic}`}>
+                      <p className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
+                    </Link>
+                  </div>
+                  
                 )
             })}
         </div>
