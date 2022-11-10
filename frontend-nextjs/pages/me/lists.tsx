@@ -4,10 +4,11 @@ import BlogsContainer from '../../components/BlogsContainer/BlogsContainer'
 import ListsPageLayout from './ListsPageLayout'
 
 const Lists = () => {
-    const {allBookmarkedBlogs , setAllBookmarkedBlogs} = useContext(BlogsContext)
+    const {allBookmarkedBlogs , setAllBookmarkedBlogs}:any = useContext(BlogsContext)
 
     useEffect(() => {
-        let fresh:any = JSON.parse(localStorage.getItem("bookmarkedBlogs"))
+        let firstGetter:any = localStorage.getItem("bookmarkedBlogs")
+        let fresh:any = JSON.parse(firstGetter)
         setAllBookmarkedBlogs(fresh)
     },[])
 
