@@ -9,7 +9,7 @@ const SideBarProfile = () => {
     
 
   return (
-    <div className='w-[90%] px-2 my-4 '>
+    <div key={blogDetails._id} className='w-[90%] px-2 my-4 '>
         {blogDetails.profileImg  ? <img src={blogDetails.profileImg as string} alt="dp" className='w-20 h-20 rounded-full' /> : <div className='w-20 h-20 bg-gray-300 rounded-full'> </div>}
 
         <p className='text-lg font-semibold text-gray-800 mt-4 mv-1'> {blogDetails.username} </p>
