@@ -9,13 +9,14 @@ interface LayoutProps {
 }
 
 const ListsPageLayout = ({children}:LayoutProps) => {
-  const { allBlogsStateForSidebar , blogs } = useContext(BlogsContext)
+  const { allBlogsStateForSidebar , blogs }:any = useContext(BlogsContext)
   return (
     <div className='grid grid-cols-12'>
             <HomeTopBar />
             <Navbar />
             {children} 
-            <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar}   />
+            {/* <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar}   /> */}
+            <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogsForSidebar={allBlogsStateForSidebar}   />
             {/* <Sidebar homePageSidebar={"yes"} singleBlogPageSidebar={"no"} topicPageSideBar={"no"} blogs={allBlogsStateForSidebar} blogs={blogs}   /> */}
     </div>
   )
