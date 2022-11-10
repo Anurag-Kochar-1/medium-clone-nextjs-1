@@ -55,7 +55,10 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
 
   useEffect(() => {
     
-    let fresh:any = JSON.parse(localStorage.getItem("bookmarkedBlogs"))
+    // let fresh:any = JSON.parse(localStorage.getItem("bookmarkedBlogs"))
+    let firstGetter:any = localStorage.getItem("bookmarkedBlogs")
+    let fresh:any = JSON.parse(firstGetter)
+
     // console.log('fresh');
     // console.log(fresh);
     setBookmarkedBlog(fresh)
