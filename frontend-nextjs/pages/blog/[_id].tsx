@@ -11,7 +11,7 @@ interface Props {
     blogs: Blog
 }
 
-const blogPage  = (  ) => {
+const BlogPage  = (  ) => {
     console.log(`blogPage is runnning`);
     
     const [singleBlogData, setSingleBlogData] = useState<Blog[]>([])
@@ -61,4 +61,4 @@ const blogPage  = (  ) => {
   )
 }
 
-export default blogPage
+export default BlogPage
