@@ -94,16 +94,16 @@ const Index = () => {
               }}
              />
 
-            {/* <textarea 
+            <textarea 
               placeholder='Tell your story' 
               className='outline-none border-none w-[85%] h-[65vh] my-3 bg-white placeholder:text-gray-900 px-2 py-3 placeholder:font-medium font-serif placeholder:text-lg text-lg text-gray-900 ' 
               value={blogContent}
               onChange={(e) => {
                 setBlogContent(e.target.value)
               }}
-              />  */}
+              /> 
             
-            <ReactQuill 
+            {/* <ReactQuill 
               placeholder='....'
               modules={modules}
               formats={formats}
@@ -111,7 +111,7 @@ const Index = () => {
               value={blogContent}
               className='outline-none w-[85%] rounded-lg h-[65vh] my-3 bg-white placeholder:text-gray-900 placeholder:font-medium font-serif placeholder:text-lg text-lg text-gray-900' 
             
-            />
+            /> */}
 
 
         </main>}
