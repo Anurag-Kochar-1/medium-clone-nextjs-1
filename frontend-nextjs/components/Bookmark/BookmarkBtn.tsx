@@ -42,7 +42,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
 
   const removingDuplicates = () => {
     const result = bookmarkedBlog.reduce((finalArray , current) => {
-        let obj = finalArray.find((item) => item._id === current._id)
+        let obj = finalArray.find((item:Blog) => item._id  === current._id)
 
         if(obj) {
             return finalArray;
