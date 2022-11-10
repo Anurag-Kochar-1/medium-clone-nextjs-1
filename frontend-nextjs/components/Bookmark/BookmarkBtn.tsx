@@ -47,7 +47,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
         if(obj) {
             return finalArray;
         } else {
-            return finalArray.concat([current])
+            return finalArray.concat([current] as any)
         }
     },[])
     setBookmarkedBlog(result)
