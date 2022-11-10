@@ -1,4 +1,4 @@
 [build]
   base = "frontend-nextjs"
   command = "CI='' npm run build"
-    publish = "frontend-nextjs/.next"
+    publish = ".next"
