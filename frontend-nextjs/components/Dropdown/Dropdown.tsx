@@ -1,9 +1,12 @@
+import { useContext } from "react"
+import { BlogsContext } from "./../../context/Context"
 import { Menu, Transition } from '@headlessui/react'
 import { useSession } from 'next-auth/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { BsThreeDots } from "react-icons/bs"
 import { toast } from 'react-toastify'
 import deleteBlogById  from '../../apis/deleteBlogById'
+import refreshFeed from '../../utils/functions/refreshFeed'
 
 
 interface Props {
@@ -12,7 +15,14 @@ interface Props {
 }
 
 export default function Dropdown( {blogId , creatorEmail}:Props ) {
+  const { setBlogs }:any = useContext(BlogsContext)
     const {data: session } = useSession()    
+
+    const reFetchingBlogs = async () => {
+      const refreshingFeed = await refreshFeed()
+      const data = await refreshingFeed
+      setBlogs(data)
+    }
 
     const showBlogDeletedToast = () => toast('Blog Deleted', { hideProgressBar: true, autoClose: 2000, type: 'success' ,position:'bottom-center'})
 
@@ -22,6 +32,7 @@ export default function Dropdown( {blogId , creatorEmail}:Props ) {
        try {
         if(session?.user?.email === creatorEmail ) {
             const data = await deleteBlogById(blogId as string)
+            reFetchingBlogs()
             showBlogDeletedToast()
          }
        } catch (error) {
