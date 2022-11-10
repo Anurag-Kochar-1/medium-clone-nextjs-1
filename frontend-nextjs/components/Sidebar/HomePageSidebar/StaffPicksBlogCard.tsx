@@ -4,10 +4,9 @@ import Link from "next/link"
 
 interface Props {
     blog : Blog
-    key: string
 }
 
-const StaffPicksBlogCard = ( {blog, key}:Props ) => {
+const StaffPicksBlogCard = ( { blog }:Props ) => {
   return (
     <Link href={`blog/${blog._id}`}>
         <div  className='w-full flex flex-col items-start justify-start my-2 px-1 hover:cursor-pointer'>
