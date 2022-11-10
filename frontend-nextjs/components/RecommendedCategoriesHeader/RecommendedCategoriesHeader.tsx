@@ -89,8 +89,8 @@ const RecommendedCategoriesHeader = (  ) => {
                 <p className='text-sm font-medium'> All </p>
 
             </div>
-                {Categories.map((category) => {
-                    return <TagCard fetchBlogsByTagFunction={fetchBlogsByTagFunction} category={category} />
+                {Categories.map((category , index) => {
+                    return <TagCard key={index} fetchBlogsByTagFunction={fetchBlogsByTagFunction} category={category} />
                 })}
             </div>
 
