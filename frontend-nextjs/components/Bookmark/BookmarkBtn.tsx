@@ -20,7 +20,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
 
-  const [bookmarkedBlog, setBookmarkedBlog] = useLocalStorage( "bookmarkedBlogs" ,  []);
+  const [bookmarkedBlog, setBookmarkedBlog] = useLocalStorage<Blog[]>( "bookmarkedBlogs" ,  []);
 
   const bookmarkTheBlog = () => {
     console.log('bookmarkTheBlog is running');
