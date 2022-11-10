@@ -11,11 +11,11 @@ interface Props {
   homePageSidebar?:string
   singleBlogPageSidebar?: string
   topicPageSideBar?: string
-  blogs?: Blog[] 
+  blogsForSidebar?: Blog[] 
   blog?: Blog 
 }
 
-const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , topicPageSideBar , blogs }:Props ) => {
+const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , topicPageSideBar , blogsForSidebar }:Props ) => {
   
   
 
@@ -31,7 +31,7 @@ const Sidebar = ( {homePageSidebar , singleBlogPageSidebar , topicPageSideBar , 
 
 
 
-    {homePageSidebar === 'yes' &&  <HomePageSidebar blogs={blogs}  />}
+    {homePageSidebar === 'yes' &&  <HomePageSidebar blogs={blogsForSidebar}  />}
 
     {singleBlogPageSidebar === 'yes' &&  <SingleBlogPageSideBar  />}
 
