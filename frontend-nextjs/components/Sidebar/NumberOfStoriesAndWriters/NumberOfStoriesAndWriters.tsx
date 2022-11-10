@@ -3,9 +3,9 @@ import { BlogsContext } from '../../../context/Context'
 import { Blog } from '../../../types/typings'
 
 const NumberOfStoriesAndWriters = () => {
-  const { topicPageDetails } = useContext(BlogsContext)
+  const { topicPageDetails }:any = useContext(BlogsContext)
 
-  let uniqueWriters = Array.from(new Set(topicPageDetails.map(({ username  }) => username)));
+  let uniqueWriters = Array.from(new Set(topicPageDetails.map(({ username  }:any) => username)));
 
   return (
     <div className='w-full flex flex-row justify-start items-center px-1 py-5 bg-white'>
