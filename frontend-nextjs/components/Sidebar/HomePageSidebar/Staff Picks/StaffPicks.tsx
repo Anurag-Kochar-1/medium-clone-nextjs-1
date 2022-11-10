@@ -18,7 +18,7 @@ const StaffPicks = ({blogs}:Props) => {
       </div>
 
       
-      <div className='w-full my-2 px-1'>
+      {/* <div className='w-full my-2 px-1'>
         {blogs.map((blog , index) => {
             return blog.staffPicks === true && (
               <div key={blog._id}>
@@ -26,7 +26,8 @@ const StaffPicks = ({blogs}:Props) => {
               </div>
             )
         })}
-      </div>
+      </div> */}
+      
     </div>
     
 </div>
