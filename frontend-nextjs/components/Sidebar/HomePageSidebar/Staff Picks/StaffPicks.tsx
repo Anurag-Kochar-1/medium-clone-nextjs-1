@@ -20,7 +20,7 @@ const StaffPicks = ({blogs}:Props) => {
       
       <div className='w-full my-2 px-1'>
         {blogs.map((blog) => {
-            return blog.staffPicks === true ? <StaffPicksBlogCard blog={blog} /> : null
+            return blog.staffPicks === true ? <StaffPicksBlogCard key={blog._id} blog={blog} /> : null
         })}
       </div>
     </div>

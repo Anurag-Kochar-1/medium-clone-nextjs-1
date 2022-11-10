@@ -11,7 +11,7 @@ const RecommendedTopics = () => {
             {Topics.map((topic) => {
                 return (
                   <Link href={`/tag/${topic}`}>
-                    <p className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
+                    <p key={topic} className='bg-gray-100 px-5 py-1 mx-2 my-2 rounded-full text-gray-700 text-base font-normal hover:cursor-pointer hover:text-gray-800'> {topic} </p>
                   </Link>
                 )
             })}
