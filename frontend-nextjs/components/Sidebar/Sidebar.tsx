@@ -11,7 +11,7 @@ interface Props {
   homePageSidebar?:string
   singleBlogPageSidebar?: string
   topicPageSideBar?: string
-  blogsForSidebar?: Blog[] 
+  blogsForSidebar?:Blog[] | undefined
   // blog?: Blog 
 }
 

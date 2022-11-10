@@ -4,7 +4,7 @@ import { Blog } from '../../../../types/typings'
 import StaffPicksBlogCard from '../StaffPicksBlogCard'
 
 interface Props {
-    blogs: Blog[]
+    blogs: Blog[] | undefined
   }
 
 const StaffPicks = ({blogs}:Props) => {
@@ -19,7 +19,7 @@ const StaffPicks = ({blogs}:Props) => {
 
       
       <div className='w-full my-2 px-1'>
-        {blogs.map((blog , index) => {
+        {blogs && blogs.map((blog , index) => {
             return blog.staffPicks === true && (
               <div key={blog._id}>
                 <StaffPicksBlogCard  blog={blog} /> 

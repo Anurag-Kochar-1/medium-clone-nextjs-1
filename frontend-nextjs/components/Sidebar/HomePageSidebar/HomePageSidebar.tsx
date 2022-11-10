@@ -7,7 +7,7 @@ import StaffPicks from './Staff Picks/StaffPicks'
 
 import StaffPicksBlogCard from './StaffPicksBlogCard'
 interface Props {
-  blogs: Blog[]
+  blogs: Blog[] | undefined
 }
 
 
