@@ -14,9 +14,10 @@ import { useSession } from 'next-auth/react'
 
 interface Props {
     blog: Blog
+    key: string
 }
 
-const SingleBlogPage = ({blog}:Props) => {
+const SingleBlogPage = ({blog , key}:Props) => {
     const {data: session } = useSession() 
 
     function createMarkup (body) {
@@ -31,7 +32,7 @@ const SingleBlogPage = ({blog}:Props) => {
     
   return (
     
-    <div className='w-full bg-white flex flex-col just items-center px-2 pb-40  md:w-[80%] lg:w-[70%] scrollbar-hide'>
+    <div key={key} className='w-full bg-white flex flex-col just items-center px-2 pb-40  md:w-[80%] lg:w-[70%] scrollbar-hide'>
 
     
         <Head>
