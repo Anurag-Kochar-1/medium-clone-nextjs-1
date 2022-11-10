@@ -11,6 +11,7 @@ import {GrFormNext , GrFormPrevious} from "react-icons/gr"
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import TagCard from './TagCard'
+import refreshFeed from '../../utils/functions/refreshFeed'
 
 
 interface Props {
@@ -20,6 +21,11 @@ interface Props {
 const RecommendedCategoriesHeader = (  ) => {
     const {setBlogs , blogs}:any = useContext(BlogsContext) 
 
+    const reFetchingBlogs = async () => {
+        const refreshingFeed = await refreshFeed()
+        const data = await refreshingFeed
+        setBlogs(data)
+      }
 
     const router = useRouter()
     const { tag } = router.query
@@ -29,6 +35,7 @@ const RecommendedCategoriesHeader = (  ) => {
   
   
     const fetchBlogsByTagFunction = async ( searchQuery:string ) => {
+        
       console.log(` fetchBlogsByTagFunction is running :  ${searchQuery} `);
     
       // const BlogsByTag:any = await fetchBlogsByTag( searchQuery as string  )        
@@ -86,7 +93,7 @@ const RecommendedCategoriesHeader = (  ) => {
             <div id='tagsContainer' className='overflow-y-hidden overflow-x-scroll scrollbar-hide mx-10 h-[8vh] flex scroll-smooth bg-white'>
 
             <div onClick={() => alert(1)} className='px-3 mx-1 flex justify-center items-center text-center text-gray-600 hover:text-black hover:cursor-pointer bg-white rounded-lg'>
-                <p className='text-sm font-medium'> All </p>
+                <p onClick={reFetchingBlogs} className='text-sm font-semibold hover:cursor-pointer'> All </p>
 
             </div>
                 {Categories.map((category , index) => {
