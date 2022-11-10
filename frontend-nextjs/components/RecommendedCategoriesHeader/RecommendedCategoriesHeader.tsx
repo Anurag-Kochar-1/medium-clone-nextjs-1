@@ -10,7 +10,7 @@ import {GrFormNext , GrFormPrevious} from "react-icons/gr"
 
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import TagCard from './tagCard'
+import TagCard from './TagCard'
 
 
 interface Props {
