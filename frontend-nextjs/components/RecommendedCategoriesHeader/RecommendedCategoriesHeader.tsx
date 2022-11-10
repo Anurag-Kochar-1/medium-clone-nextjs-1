@@ -92,7 +92,12 @@ const RecommendedCategoriesHeader = (  ) => {
 
             <div id='tagsContainer' className='overflow-y-hidden overflow-x-scroll scrollbar-hide mx-10 h-[8vh] flex scroll-smooth bg-white'>
 
-            <div onClick={() => alert(1)} className='px-3 mx-1 flex justify-center items-center text-center text-gray-600 hover:text-black hover:cursor-pointer bg-white rounded-lg'>
+            <div 
+                onClick={() => {
+                    router.push('/')
+                    reFetchingBlogs()
+                }}
+                className='px-3 mx-1 flex justify-center items-center text-center text-gray-600 hover:text-black hover:cursor-pointer bg-white rounded-lg'>
                 <p onClick={reFetchingBlogs} className='text-sm font-medium hover:cursor-pointer'> All </p>
 
             </div>
