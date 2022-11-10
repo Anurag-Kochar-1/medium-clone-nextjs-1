@@ -3,7 +3,7 @@ import { BlogsContext } from "../../context/Context"
 import BlogsContainer from '../../components/BlogsContainer/BlogsContainer'
 import ListsPageLayout from './ListsPageLayout'
 
-const lists = () => {
+const Lists = () => {
     const {allBookmarkedBlogs , setAllBookmarkedBlogs} = useContext(BlogsContext)
 
     useEffect(() => {
@@ -30,4 +30,4 @@ const lists = () => {
   )
 }
 
-export default lists
+export default Lists
