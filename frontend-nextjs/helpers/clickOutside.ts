@@ -8,7 +8,7 @@ interface Props {
 export default function useClickOutside (dropdownRef:React.MutableRefObject<null> , settingDropdownStateToFlase:()=>void) {
     useEffect(() =>{ 
       
-        const listener = (e):any => {
+        const listener = (e: any) => {
             // console.log('aalistener is runnning');
             
             if(!dropdownRef.current || dropdownRef.current.contains(e.target)) {
