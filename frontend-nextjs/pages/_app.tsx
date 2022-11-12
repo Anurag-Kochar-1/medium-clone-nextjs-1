@@ -8,8 +8,9 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { BlogsContext } from "../context/Context"
+// import { BlogsContext } from "../context/Context"
 import { Blog } from '../types/typings'
+import { BlogsContext2Wrapper } from '../context/Context'
 
 interface blogDetailsType {
   blogDetails: Blog
@@ -30,11 +31,19 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: a
 
   return (
     
-      <BlogsContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar , topicPageDetails , setTopicPageDetails , allBookmarkedBlogs , setAllBookmarkedBlogs  }}>
+    //   <BlogsContext.Provider value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar , topicPageDetails , setTopicPageDetails , allBookmarkedBlogs , setAllBookmarkedBlogs  }}>
+    //     <SessionProvider session={session}>
+    //       <Component {...pageProps} />
+    //       <ToastContainer />
+    //     </SessionProvider>
+    // </BlogsContext.Provider>
+
+
+    <BlogsContext2Wrapper>
         <SessionProvider session={session}>
           <Component {...pageProps} />
           <ToastContainer />
         </SessionProvider>
-    </BlogsContext.Provider>
+    </BlogsContext2Wrapper>
   )
 }
