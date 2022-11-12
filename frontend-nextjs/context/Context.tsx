@@ -39,9 +39,19 @@ export function BlogsContext2Wrapper ({children}:Props) {
     // BookmarkedBlogs State
     const [allBookmarkedBlogs, setAllBookmarkedBlogs] = useState<Blog[]>([])
 
+    // SearchBar- searchInput
+    const [searchInput, setSearchInput] = useState<string>("")
+
 
     return (
-        <BlogsContext.Provider  value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar , topicPageDetails , setTopicPageDetails , allBookmarkedBlogs , setAllBookmarkedBlogs   }}> 
+        <BlogsContext.Provider  value={{
+            blogDetails, setBlogDetails , 
+            blogs , setBlogs , 
+            allBlogsStateForSidebar ,setAllBlogsStateForSidebar , 
+            topicPageDetails , setTopicPageDetails , 
+            allBookmarkedBlogs , setAllBookmarkedBlogs , 
+            searchInput , setSearchInput  }}> 
+            
             {children}
         </BlogsContext.Provider> 
     )
