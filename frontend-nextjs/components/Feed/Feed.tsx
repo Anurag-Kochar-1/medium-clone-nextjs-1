@@ -20,7 +20,7 @@ const Feed = ( {blogs}:Props ) => {
 
   return (
 
-    <div className='col-span-12 px-2 pb-10 max-h-screen mt-[16vh] mb-[10vh] overflow-y-scroll scrollbar-hide
+    <div className='col-span-12 px-1 pb-10 max-h-screen mt-[16vh] mb-[10vh] overflow-y-scroll scrollbar-hide
     lg:col-span-8 lg:mt-[0vh] lg:mb-0 
     '>
       

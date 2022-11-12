@@ -81,7 +81,7 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
         {/* <p onClick={() => removeTheBookmarkedBlog(blog._id )}> log removeTheBookmarkedBlog </p> */}
         {/* <p onClick={() => console.log(bookmarkedBlog)}> log allBookmarkedBlogsState </p> */}
       <div
-        className="flex justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-300 lg:border-0  hover:cursor-pointer"
+        className="flex bg-yellow-300 justify-center items-center space-x-3 px-3 rounded-full border-2 border-gray-300 lg:border-0  hover:cursor-pointer"
         // onClick={() => !isBookmarked ?  bookmarkTheBlog() : removeTheBookmarkedBlog(blogId) }
         onClick={() => {
           if(!isBookmarked && session?.user) {
@@ -96,12 +96,12 @@ const BookmarkBtn = ({ blogId, blog }: Props) => {
       >
         
         {!isBookmarked ? (
-          <BsBookmarkPlus className="w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
+          <BsBookmarkPlus className="w-4 h-4 my-1  text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
         ) : (
-          <BsFillBookmarkFill className="w-4 h-4 text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
+          <BsFillBookmarkFill className="w-4 h-4 my-1 text-gray-500 lg:mx-1 lg:my-1 hover:text-black" />
         )}
 
-        <p className="text-gray-500 lg:hidden">
+        <p className="text-gray-500 hidden sm:inline-block lg:hidden">
           {!isBookmarked ? "Save" : "Saved!"}
         </p>
       </div>

@@ -50,7 +50,7 @@ const SingleBlogPage = ({blog , key}:Props) => {
             <div className='w-full 0  flex justify-start items-center py-2 md:justify-end '>
                 <BookmarkBtn blogId={blog._id} blog={blog} />
 
-                {session?.user?.email === blog.userEmail && <Dropdown blogId={blog._id} creatorEmail={blog.userEmail as string} />}
+                {session?.user?.email === blog.userEmail && <Dropdown source="blogPage" blogId={blog._id} creatorEmail={blog.userEmail as string} />}
             </div>
 
         </div>

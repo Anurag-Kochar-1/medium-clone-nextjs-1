@@ -12,9 +12,10 @@ import refreshFeed from '../../utils/functions/refreshFeed'
 interface Props {
     blogId: string
     creatorEmail: string
+    source: string
 }
 
-export default function Dropdown( {blogId , creatorEmail}:Props ) {
+export default function Dropdown( {blogId , creatorEmail , source}:Props ) {
   const { setBlogs }:any = useContext(BlogsContext)
     const {data: session } = useSession()    
 
@@ -42,7 +43,7 @@ export default function Dropdown( {blogId , creatorEmail}:Props ) {
     }
 
   return (
-    <div className="w-30 text-right rounded-xl">
+    <div className={source === "blogPage" ? "w-30 text-right rounded-xl" : "hidden sm:inline-block w-30 text-right rounded-xl"} >
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md  px-2 py-1 text-sm font-medium">
