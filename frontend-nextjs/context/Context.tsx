@@ -27,6 +27,7 @@ interface Props {
 export const BlogsContext = createContext({})
 
 export function BlogsContext2Wrapper ({children}:Props) {
+    
     const [blogDetails, setBlogDetails] = useState<blogDetailsType[]>([])
     const [blogs, setBlogs] = useState <Blog[]> ([])
 
@@ -38,7 +39,6 @@ export function BlogsContext2Wrapper ({children}:Props) {
     // BookmarkedBlogs State
     const [allBookmarkedBlogs, setAllBookmarkedBlogs] = useState<Blog[]>([])
 
-    // const [dance , setDance] = useState<string>("POP")
 
     return (
         <BlogsContext.Provider  value={{blogDetails, setBlogDetails , blogs , setBlogs , allBlogsStateForSidebar ,setAllBlogsStateForSidebar , topicPageDetails , setTopicPageDetails , allBookmarkedBlogs , setAllBookmarkedBlogs   }}> 
