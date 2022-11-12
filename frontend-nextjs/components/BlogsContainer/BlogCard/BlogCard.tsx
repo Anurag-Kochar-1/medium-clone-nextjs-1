@@ -43,7 +43,7 @@ const BlogCard = ( {blog}:Props ) => {
 
                     <Link href={`/blog/${blog._id}`}>
                     <div className='mb-5 hover:cursor-pointer'>
-                        <h3 className=' pt-4 text-md bg-purple-300 text-black font-bold md:text-xl'> {blog?.title} </h3>
+                        <h3 className=' pt-4 text-md  text-black font-bold md:text-xl'> {blog?.title} </h3>
                         <p className='hidden text-base text-gray-800 font-normal md:inline-block md:text-lg'> {blog?.previewSubtitle.slice(0,150)}... </p>
                     </div>
                     </Link>
@@ -68,7 +68,7 @@ const BlogCard = ( {blog}:Props ) => {
 
 
         <Link href={`/blog/${blog._id}`}>
-            <div className='w-[30%] bg-green-300 flex justify-center items-center my-auto hover:cursor-pointer'>
+            <div className='w-[30%]  flex justify-center items-center my-auto hover:cursor-pointer'>
                 <img src={blog.coverImage} alt="cover-image" className='w-20 h-20 rounded-md md:w-32 md:h-32 lg:w-36 lg:h-36 aspect-square'/>
             </div>
         </Link>

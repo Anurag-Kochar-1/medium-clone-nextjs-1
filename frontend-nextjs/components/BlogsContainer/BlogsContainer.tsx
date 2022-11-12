@@ -14,7 +14,7 @@ const BlogsContainer = ( {blogsData , IsRecommendedCategoriesHeader }:Props ) =>
   
   return (
     
-    <div className={ IsRecommendedCategoriesHeader ? 'w-full h-auto flex flex-col items-center justify-start py-20 px-2 bg-blue-600' : 'w-full h-auto flex flex-col items-center justify-start py-5 px-2 bg-whtie' }>
+    <div className={ IsRecommendedCategoriesHeader ? 'w-full h-auto flex flex-col items-center justify-start py-20 px-2' : 'w-full h-auto flex flex-col items-center justify-start py-5 px-2 bg-whtie' }>
         {/* <button onClick={() => console.log(blogsData)}> log blogsData from blogContainer  </button> */}
        {IsRecommendedCategoriesHeader && <RecommendedCategoriesHeader />}
          
