@@ -15,6 +15,8 @@ import dynamic from "next/dynamic";
 const Index = () => {
   const ReactQuill = dynamic(import('react-quill'), { ssr: false })
 
+  const ReactQuillInput = useRef(null)
+
   const [hydrated, setHydrated] = useState<boolean>(false);
 
   useEffect(() => {
@@ -64,8 +66,9 @@ const Index = () => {
   const [blogContent, setBlogContent] =  useState<string>('')
 
   const handleBlogContent = (e:any) => {
-    // console.log(e)
+    console.log(e)
     setBlogContent(e)
+    // ReactQuillInput.current.focus();
   }
 
 

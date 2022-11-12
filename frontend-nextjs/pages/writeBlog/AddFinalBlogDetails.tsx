@@ -203,6 +203,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   <MenuItem value={'Tech'}> Tech </MenuItem>
                   <MenuItem value={'Science'}> Science </MenuItem>
                   <MenuItem value={'Business'}> Business </MenuItem>
+                  <MenuItem value={'Mental Health'}> Mental Health </MenuItem>
                   <MenuItem value={'Travel'}> Travel </MenuItem>
                   <MenuItem value={'Movies'}> Movies </MenuItem>
                   <MenuItem value={'Fitness'}> Fitness </MenuItem>
@@ -214,6 +215,7 @@ const AddFinalBlogDetails = ( {title, blogContent , setTitle , setBlogContent}:P
                   <MenuItem value={'Economy'}> Economy </MenuItem>
                   <MenuItem value={'GeoPolitics'}> GeoPolitics </MenuItem>
                   <MenuItem value={'Fashion'}> Fashion </MenuItem>
+                  <MenuItem value={'Career'}> Career </MenuItem>
                 </Select>
               </FormControl>
             </Box>

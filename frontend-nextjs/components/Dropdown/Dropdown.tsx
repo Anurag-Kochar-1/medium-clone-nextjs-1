@@ -7,6 +7,7 @@ import { BsThreeDots } from "react-icons/bs"
 import { toast } from 'react-toastify'
 import deleteBlogById  from '../../apis/deleteBlogById'
 import refreshFeed from '../../utils/functions/refreshFeed'
+import { useRouter } from "next/router"
 
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export default function Dropdown( {blogId , creatorEmail , source}:Props ) {
+  const router = useRouter()
   const { setBlogs }:any = useContext(BlogsContext)
     const {data: session } = useSession()    
 
@@ -35,6 +37,7 @@ export default function Dropdown( {blogId , creatorEmail , source}:Props ) {
             const data = await deleteBlogById(blogId as string)
             reFetchingBlogs()
             showBlogDeletedToast()
+            router.push('/')
          }
        } catch (error) {
         console.log(error);
@@ -65,7 +68,10 @@ export default function Dropdown( {blogId , creatorEmail , source}:Props ) {
 
                   <button
                     className='px-2 py-1  text-gray-500 hover:cursor-pointer hover:text-black'
-                    onClick={() => deteteBlogFunction()}
+                    onClick={() => {
+                      deteteBlogFunction()
+                      
+                    }}
                   >
                     Delete
                   </button>
