@@ -24,20 +24,20 @@ const BlogCard = ( {blog}:Props ) => {
 
     if(!blog) return <h1 className='text-7xl font-bold'> FETCHING........ </h1>
   return (    
-        <div className='rounded-lg w-full bg-red-200  h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
+        <div className='rounded-lg w-full   h-auto flex flex-row justify-center items-start px-2 py-6 my-4 
         border-b-2 border-b-gray-200 
         lg:w-[80%]
         '
         onClick={() => setBlogDetails(blog)}
         >
-            <div className='w-[70%] bg-red-300  h-auto flex flex-col items-start justify-start'>
+            <div className='w-[70%]   h-auto flex flex-col items-start justify-start'>
                     <div className=' w-full flex justify-start items-center space-x-2 py-2 text-center    '>
                         <img  src={blog.profileImg as string } alt="dp" 
                         className='rounded-full w-6 h-6 '/>
                         {/* <Image src={blog.profileImg as string } alt="dp" height={5} width={5} /> */}
                         
-                        <p className='text-sm font-normal text-black bg-emerald-500'> {blog.username as string} </p>
-                        <p className='hidden sm:inline-block text-sm font-normal text-gray-800 bg-emerald-500'> 8 Oct </p>
+                        <p className='text-sm font-normal text-black '> {blog.username as string} </p>
+                        <p className='hidden sm:inline-block text-sm font-normal text-gray-800'> 8 Oct </p>
 
                     </div>
 
@@ -48,7 +48,7 @@ const BlogCard = ( {blog}:Props ) => {
                     </div>
                     </Link>
 
-                    <div className='flex flex-row space-x-1 justify-between items-center w-full px-4 bg-blue-200'>
+                    <div className='flex flex-row space-x-1 justify-between items-center w-full px-4 '>
                     <p className='px-3 py-1  text-sm rounded-full bg-gray-200'> {blog.category} </p>
                         {/* <Link href={`/?=${blog.category}`}> 
                             <a>
