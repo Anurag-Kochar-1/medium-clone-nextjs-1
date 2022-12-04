@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Blog } from '../../types/typings'
-import {BsBookmarkPlus} from "react-icons/bs"
+// import {BsBookmarkPlus} from "react-icons/bs"
 import Head from 'next/head'
 import OptionsBottomBar from '../BlogPageOptionsBottomBar/OptionsBottomBar'
 
@@ -11,6 +11,9 @@ import { BlogsContext } from '../../context/Context'
 
 import DOMPurify from "dompurify";
 import { useSession } from 'next-auth/react'
+import styles from "../../styles/BlogPage.module.css"
+
+
 
 interface Props {
     blog: Blog
@@ -79,6 +82,7 @@ const SingleBlogPage = ({blog , key}:Props) => {
             dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(blog.body )
             }}
+            className={styles.blogContent}
         />
 
         
