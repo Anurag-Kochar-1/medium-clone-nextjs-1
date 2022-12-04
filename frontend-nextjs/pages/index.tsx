@@ -24,8 +24,7 @@ interface Props {
 
 export default function Home( {Allblogs}:Props  ) {
 
-  // const [blogs, setBlogs] = useState <Blog[]> (Allblogs)
-  const {setBlogs , blogs , allBlogsStateForSidebar , setAllBlogsStateForSidebar}:any = useContext(BlogsContext) 
+  const {setBlogs , blogs , allBlogsStateForSidebar , setAllBlogsStateForSidebar }:any = useContext(BlogsContext) 
     
   const  {data: session} = useSession()
 
